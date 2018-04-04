@@ -1,0 +1,47 @@
+Name: Brendan Jacques
+
+Student ID: 01419198
+
+
+Computer Graphics: Progress Report 1
+
+Objective: To complete part 1 of the Final Project, specifically to create an interface where a user may create a 3d object using OpenGL (WebGL???)
+by flipping between three different views of the object and clicking points on the screen. 
+
+Degree of Success: 0%
+
+Work Description: Attempted to complete a basic WebGL application that could create a 3d object by cycling between three different
+		  "views" whilst creating an array of vertices the application could use to construct the shape. Failed due to:
+			 1) a bug involving the implementation of vertex and fragment shaders that I wasn't able to.
+			 2) Delays to initial progress due to confusion over whether OpenGL or WebGL was meant to be used for the project. The syllabus
+			    indicated use of client-side programs was default, but OpenGL was the language used in class despite it's library not being
+			    supported on browsers.
+		  Was able to modify my getMousePosition function so that it could return coordinates accurate to WebGL's specifications and ironed
+		  out an array system for gathering the vertices for the shape.
+
+
+How to Run:
+
+1) Project should be able to run simply by downloading the project file and running main.html as is.
+
+
+
+Link to Weblab Page:  http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/main.html
+
+Sources:
+
+1) https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/ 
+I took the getMousePos function used in this tutorial for use in calculating the mouse's position on the canvas. 
+
+
+2) https://stackoverflow.com/questions/42309715/how-to-correctly-pass-mouse-coordinates-to-webgl
+Modified the getMousePos above with additions from this tutorial in order to make the function work with WebGL.
+
+3) https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Creating_3D_objects_using_WebGL
+Downloaded the code used here as a reference for how to create 3d objects in WebGl. Included in the "tutorial-code" folder in the submission,
+but not actually used in my project.
+
+4) https://www.tutorialspoint.com/webgl/webgl_sample_application.htm
+The code found here was used as the basis for the function that draws the 3d object in WebGl. Modified slightly in my code to account for using a variable array
+rather than a constant collection of vertices. Was meant to be used as a learning tool to improve my understanding of WebGL, but has been commented out
+as it does not work in its current form.
