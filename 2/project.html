@@ -7,13 +7,23 @@
         <div id="selection" class="choose">
             <span class="menu"><input id="transform" value="Convert To 3D" class="submit" type="button" /></span>
         </div>
-        <p>Front:</p>
-        <canvas id="frontCanvas" class="generic" width="600px" height="600px"></canvas>
-        <p>Side:</p>
-        <canvas id="sideCanvas" class="generic" width="600px" height="600px"></canvas>
-        <p>Top:</p>
-        <canvas id="topCanvas" class="generic" width="600px" height="600px"></canvas>
-        <p>Result:</p>
-        <canvas id="masterCanvas" class="generic" width="600px" height="600px"></canvas>
+        <div id="front" class="container">
+            <div class="sides">
+                <p>Front:</p>
+                <canvas id="frontCanvas" class="generic" width="600px" height="600px"></canvas>
+            </div>
+            <div id="side" class="sides">
+                <p>Side:</p>
+                <canvas id="sideCanvas" class="generic" width="600px" height="600px"></canvas>
+            </div>
+            <div id="top" class="sides">
+                <p>Top:</p>
+                <canvas id="topCanvas" class="generic" width="600px" height="600px"></canvas>
+            </div>
+        </div>
+        <div id="master" class="sides">
+            <p>Result:</p>
+            <canvas id="masterCanvas" class="generic" width="600px" height="600px"></canvas>
+        </div>
     </body>
 </html>

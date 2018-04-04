@@ -1,3 +1,7 @@
+#master{
+    display: none;
+}
+
 canvas.generic{
     border: 2px solid black;
 }
@@ -25,6 +29,10 @@ div.choose {
 div.fractal-choose {
     display: inline-block;
     width: 100%;
+}
+
+div.sides {
+    display: inline-block;
 }
 
 span.menu {

@@ -1,3 +1,10 @@
+function toggleCanvas() {
+    document.getElementById("front").style.display = "none";
+    document.getElementById("side").style.display = "none";
+    document.getElementById("top").style.display = "none";
+    document.getElementById("master").style.display = "block";
+}
+
 function getMousePosition(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     var varX = (evt.clientX - rect.left);
@@ -279,6 +286,7 @@ window.onload = function() {
         //object from it.        
     });
     document.getElementById("transform").addEventListener("click", function(evt) {
+        toggleCanvas();
         var newX, newY, newZ;
         var shape;
         var counter = 0;
