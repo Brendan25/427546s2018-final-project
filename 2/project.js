@@ -5,6 +5,13 @@ function toggleCanvas() {
     document.getElementById("master").style.display = "block";
 }
 
+function toggleCanvas2() {
+    document.getElementById("front").style.display = "block";
+    document.getElementById("side").style.display = "block";
+    document.getElementById("top").style.display = "block";
+    document.getElementById("master").style.display = "none";
+}
+
 function getMousePosition(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     var varX = (evt.clientX - rect.left);
@@ -82,9 +89,9 @@ function draw2D(gl, positions, count, prim) {
         // Tell WebGL how to convert from clip space to pixels
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-        // Clear the canvas
-        gl.clearColor(0, 0, 0, 0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
+        //*** Clear the canvas
+        //gl.clearColor(0, 0, 0, 0);
+        //gl.clear(gl.COLOR_BUFFER_BIT);
 
         // Tell it to use our program (pair of shaders)
         gl.useProgram(program);
@@ -105,11 +112,16 @@ function draw2D(gl, positions, count, prim) {
           positionAttributeLocation, size, type, normalize, stride, offset)
 
         // draw
-        var primitiveType = gl.LINES;
-        if(prim == "shape") {
-            primitiveType = gl.TRIANGLE_STRIP;
+        var primitiveType = gl.POINTS;
+        if(prim == "LINES") {
+            primitiveType = gl.LINES;
+        } else if(prim == "LINE_STRIP") {
+            primitiveType = gl.LINE_STRIP;
+        } else if(prim == "TRIANGLE") {
+            primitiveType = gl.TRIANGLES;
+        } else if(prim == "TRIANGLE_FAN") {
+            primitiveType = gl.TRIANGLE_FAN;
         }
-        var offset = 0;
         gl.drawArrays(primitiveType, offset, count);
 }
 
@@ -143,9 +155,9 @@ function draw3D(gl, positions, count, prim) {
     // Tell WebGL how to convert from clip space to pixels
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-    // Clear the canvas
-    gl.clearColor(0, 0, 0, 0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    //*** Clear the canvas
+    //gl.clearColor(0, 0, 0, 0);
+    //gl.clear(gl.COLOR_BUFFER_BIT);
 
     // Tell it to use our program (pair of shaders)
     gl.useProgram(program);
@@ -157,7 +169,7 @@ function draw3D(gl, positions, count, prim) {
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
     // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
-    var size = 3;          // 2 components per iteration
+    var size = 3;          // 3 components per iteration
     var type = gl.FLOAT;   // the data is 32bit floats
     var normalize = false; // don't normalize the data
     var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
@@ -200,32 +212,171 @@ window.onload = function() {
         return;
     }
     
-    var frontA = new Array(); var frontSize = 0;
-    var sideA = new Array(); var sideSize = 0;
-    var topA = new Array(); var topSize = 0;
+    //f = number of shapes on frontA. i = number of entries in each layer.
+    var frontA = new Array();
+    var frontTypes = new Array();
+    var frontSize = 0; 
+    var f = 0;
+    frontA[f] = new Array(); 
+    frontTypes.push("line");
+    
+    var sideA = new Array(); 
+    var sideSize = 0; 
+    var s = 0;
+    var sideTypes = new Array();
+    sideA[s] = new Array(); 
+    sideTypes.push("line");
+    
+    var topA = new Array(); 
+    var topSize = 0; 
+    var t = 0;
+    var topTypes = new Array();
+    topA[t] = new Array(); 
+    topTypes.push("line");
+    
+    //var shape_typeF = "line";
+    //var shape_typeS = "line";
+    //var shape_typeT = "line";
+    
 //   var vLayer = 0;
 //    var radius = 200;
 //    var XZRotation = radToDeg(0);
 //    var YZRotation = radToDeg(0);
 
+//Constructors for each new shape on the Front Portion.
+    document.getElementById("frontLine").addEventListener("click", function(evt) {
+        f++;
+        frontA[f] = new Array();
+        frontTypes.push("line");
+    });
+    document.getElementById("frontPolyline").addEventListener("click", function(evt) {
+        f++;
+        frontA[f] = new Array();
+        frontTypes.push("polyline");
+    });
+    document.getElementById("frontCircle").addEventListener("click", function(evt) {
+        f++;
+        frontA[f] = new Array();
+        frontTypes.push("circle");
+    });
+    document.getElementById("frontTriangle").addEventListener("click", function(evt) {
+        f++;
+        frontA[f] = new Array();
+        frontTypes.push("triangle");
+    });
+    document.getElementById("frontRectangle").addEventListener("click", function(evt) {
+        f++;
+        frontA[f] = new Array();
+        frontTypes.push("rectangle");
+    });
+    document.getElementById("frontPolygon").addEventListener("click", function(evt) {
+        f++;
+        frontA[f] = new Array();
+        frontTypes.push("polygon");
+    });
+
+//Constructors for each new shape on the Side Portion.
+    document.getElementById("sideLine").addEventListener("click", function(evt) {
+        s++;
+        sideA[s] = new Array();
+        sideTypes.push("line");
+    });
+    document.getElementById("sidePolyline").addEventListener("click", function(evt) {
+        s++;
+        sideA[s] = new Array();
+        sideTypes.push("polyline");
+    });
+    document.getElementById("sideCircle").addEventListener("click", function(evt) {
+        s++;
+        sideA[s] = new Array();
+        sideTypes.push("circle");
+    });
+    document.getElementById("sideTriangle").addEventListener("click", function(evt) {
+        s++;
+        sideA[s] = new Array();
+        sideTypes.push("triangle");
+    }); 
+    document.getElementById("sideRectangle").addEventListener("click", function(evt) {
+        s++;
+        sideA[s] = new Array();
+        sideTypes.push("rectangle");
+    });
+    document.getElementById("sidePolygon").addEventListener("click", function(evt) {
+        s++;
+        sideA[s] = new Array();
+        sideTypes.push("polygon");
+    });
+
+//Constructors for each new shape on the Top Portion.
+    document.getElementById("topLine").addEventListener("click", function(evt) {
+        t++;
+        topA[t] = new Array();
+        topTypes.push("line");
+    });
+    document.getElementById("topPolyline").addEventListener("click", function(evt) {
+        t++;
+        topA[t] = new Array();
+        topTypes.push("polyline");
+    });
+    document.getElementById("topCircle").addEventListener("click", function(evt) {
+        t++;
+        topA[t] = new Array();
+        topTypes.push("circle");
+    });
+    document.getElementById("topTriangle").addEventListener("click", function(evt) {
+        t++;
+        topA[t] = new Array();
+        topTypes.push("triangle");
+    });  
+    document.getElementById("topRectangle").addEventListener("click", function(evt) {
+        t++;
+        topA[t] = new Array();
+        topTypes.push("rectangle");
+    });
+    document.getElementById("topPolygon").addEventListener("click", function(evt) {
+        t++;
+        topA[t] = new Array();
+        topTypes.push("polygon");
+    });
+
+//Canvas Listeners that draw the given objects on click by user.
     document.getElementById("frontCanvas").addEventListener("click", function(evt) {
         var mousePosition = getMousePosition(front, evt);
         var newX = mousePosition.x / front.width * 2 - 1;
         var newY = -(mousePosition.y / front.height * 2 - 1);
         var shape;
-
-        frontA.push(newX);
-        frontA.push(newY);
+        var counter = 0;
         
+        frontA[f].push(newX);
+        frontA[f].push(newY);
         frontSize++;
-        if(frontSize <= 2) {
-            shape = "points";
-            draw2D(frontGL, frontA, frontSize, shape);
-        } else {
-            shape = "shape";
-            draw2D(frontGL, frontA, frontSize, shape);
+        
+        //While there are still undrawn shapes stored in frontA...
+        while(counter < frontA.length) {
+            //Default to drawing points
+            if(frontA[counter].length > 0) {
+                if(frontA[counter].length == 2) {
+                    shape = "POINTS";
+                } else if(frontTypes[counter] == "line") {
+                    shape = "LINES";
+                } else if(frontTypes[counter] == "polyline") {
+                    shape = "LINE_STRIP";
+                } else if(frontTypes[counter] == "circle") {
+                    shape = "TRIANGLE_FAN";
+                    //More needed here.
+                } else if(frontTypes[counter] == "triangle") {
+                    shape = "TRIANGLE";
+                } else if(frontTypes[counter] == "rectangle") {
+                    shape = "TRIANGLE";
+                    //More needed here
+                } else if(frontTypes[counter] == "polygon") {
+                    //Dunno yet.
+                }
+                draw2D(frontGL, frontA[counter], ((frontA[counter].length) / 2), shape);
+            }
+            counter++;
         }
-
+        
         //Add each instance of newX and newY to the positions array in order to generate the shape.
 
         //The goal of this program atm is JUST to gather vertex
@@ -238,20 +389,37 @@ window.onload = function() {
         var newX = mousePosition.x / side.width * 2 - 1;
         var newY = -(mousePosition.y / side.height * 2 - 1);
         var shape;
-
-        sideA.push(newX);
-        sideA.push(newY);
+        var counter = 0;
         
+        sideA[f].push(newX);
+        sideA[f].push(newY);
         sideSize++;
         
-        if(sideSize <= 2) {
-            shape = "points";
-            draw2D(sideGL, sideA, sideSize, shape);
-        } else {
-            shape = "shape";
-            draw2D(sideGL, sideA, sideSize, shape);
+        //While there are still undrawn shapes stored in sideA...
+        while(counter < sideA.length) {
+            //Default to drawing points
+            if(sideA[counter].length > 0) {
+                if(sideA[counter].length == 2) {
+                    shape = "POINTS";
+                } else if(sideTypes[counter] == "line") {
+                    shape = "LINES";
+                } else if(sideTypes[counter] == "polyline") {
+                    shape = "LINE_STRIP";
+                } else if(sideTypes[counter] == "circle") {
+                    shape = "TRIANGLE_FAN";
+                    //More needed here.
+                } else if(sideTypes[counter] == "triangle") {
+                    shape = "TRIANGLE";
+                } else if(sideTypes[counter] == "rectangle") {
+                    shape = "TRIANGLE";
+                    //More needed here
+                } else if(sideTypes[counter] == "polygon") {
+                    //Dunno yet.
+                }
+                draw2D(sideGL, sideA[counter], ((sideA[counter].length) / 2), shape);
+            }
+            counter++;
         }
-
         //Add each instance of newX and newY to the positions array in order to generate the shape.
 
         //The goal of this program atm is JUST to gather vertex
@@ -264,18 +432,36 @@ window.onload = function() {
         var newX = mousePosition.x / top.width * 2 - 1;
         var newY = -(mousePosition.y / top.height * 2 - 1);
         var shape;
-
-        topA.push(newX);
-        topA.push(newY);
+        var counter = 0;
         
+        topA[f].push(newX);
+        topA[f].push(newY);
         topSize++;
         
-        if(topSize <= 2) {
-            shape = "line";
-            draw2D(topGL, topA, topSize, shape);
-        } else {
-            shape = "shape";
-            draw2D(topGL, topA, topSize, shape);
+        //While there are still undrawn shapes stored in topA...
+        while(counter < topA.length) {
+            //Default to drawing points
+            if(topA[counter].length > 0) {
+                if(topA[counter].length == 2) {
+                    shape = "POINTS";
+                } else if(topTypes[counter] == "line") {
+                    shape = "LINES";
+                } else if(topTypes[counter] == "polyline") {
+                    shape = "LINE_STRIP";
+                } else if(topTypes[counter] == "circle") {
+                    shape = "TRIANGLE_FAN";
+                    //More needed here.
+                } else if(topTypes[counter] == "triangle") {
+                    shape = "TRIANGLE";
+                } else if(topTypes[counter] == "rectangle") {
+                    shape = "TRIANGLE";
+                    //More needed here
+                } else if(topTypes[counter] == "polygon") {
+                    //Dunno yet.
+                }
+                draw2D(topGL, topA[counter], ((topA[counter].length) / 2), shape);
+            }
+            counter++;
         }
 
         //Add each instance of newX and newY to the positions array in order to generate the shape.
@@ -285,6 +471,8 @@ window.onload = function() {
         //gathering said 3d coordinates, you can generate a 3d
         //object from it.        
     });
+
+//Buttons that create the 3D object given by the above 3 canvases and reset for a new object respectively.
     document.getElementById("transform").addEventListener("click", function(evt) {
         toggleCanvas();
         var newX, newY, newZ;
@@ -296,7 +484,7 @@ window.onload = function() {
             while(counter > 0) {
                 newX = frontA.shift(); 
                 newY = frontA.shift(); 
-                newZ = 1.0;
+                newZ = -1.0;
                 
                 console.log("NewX: "+ newX + " NewY: " + newY + " NewZ: " + newZ);
 
@@ -313,7 +501,7 @@ window.onload = function() {
             while(counter > 0) {
                 newZ = sideA.shift(); 
                 newY = sideA.shift(); 
-                newX = 1.0;
+                newX = -1.0;
                 
                 console.log("NewX: "+ newX + " NewY: " + newY + " NewZ: " + newZ);
 
@@ -330,7 +518,7 @@ window.onload = function() {
             while(counter > 0) {
                 newX = topA.shift(); 
                 newZ = topA.shift(); 
-                newY = 1.0;
+                newY = -1.0;
                 
                 console.log("NewX: "+ newX + " NewY: " + newY + " NewZ: " + newZ);
 
@@ -352,5 +540,13 @@ window.onload = function() {
                 draw3D(masterGL, master3D, masterSize, shape);
             }
         }
+        master3D = [];
+        masterSize = 0;
+    });
+    document.getElementById("new").addEventListener("click", function(evt) {
+        frontA = []; frontSize = 0;
+        sideA = []; sideSize = 0;
+        topA = []; topSize = 0;
+        toggleCanvas2();
     });
 }
