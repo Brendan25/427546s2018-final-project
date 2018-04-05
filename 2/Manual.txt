@@ -1,0 +1,2 @@
+A manual is not required for this project because this project is run entirely using WebGL. All that's required to run
+it is to open the project.html file in your web browser.
