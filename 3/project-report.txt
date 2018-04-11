@@ -2,28 +2,21 @@ Name: Brendan Jacques
 
 Student ID: 01419198
 
-Computer Graphics: Progress Report 2
+Computer Graphics: Progress Report 3
 
-Objective: To complete part 1 of the Final Project using WebGL as the backend.
-I hoped to allow the user to draw rudimentary 2D objects in their web browser that would then be linked together and drawn as a 3D image.
+Objective: To complete parts 1 and 2 of the Final Project and begin work on Part 3
 
-Degree of Progress: 60%
+Degree of Progress: 100%
 
-Work Description: Constructed a WebGL application that presents the user with
-three canvases, each representing a view of the 3D model being created. From there,
-using a menu of options presented below each canvas and by clicking points on the canvas,
-the user can draw a 2D object onto each canvas, with the drawing appearing in real-time
-in 2D. This feature is working, though there's currently a glitch where only one
-shape drawn by the user appears in the canvas at a time. This doesn't pose a huge problem however
-as every shape given to the canvas still has its vector coordinates logged for the 3D object later.
-
-Created a function that, once the user completes their drawings, they press a button
-to compile every vector coordinate used in the three previous drawings and collects them
-into one array to be passed to WebGL to convert into a 3D model that is then displayed
-on a fourth, non-interactive canvas that is only visible when the 3D model is made.
-At the moment, the 3D model isn't being generated properly, most likely due to issues
-with giving the 3D model a proper, visible texture. However, the vector coordinates are
-being gathered properly and can be passed to WebGL without error.
+Work Description: 
+- Finished work on Part 1 of the Project. My application can now display a 3D image drawn by the user through
+a modified interface similar to that used in Assignment 1 and 2.
+- Added Buttons that allow the user to draw specific shapes onto each view canvas besides lines and polylines. At the moment,
+this includes triangles and custom polygons. Also working on buttons for drawing circles and rectangles, though those features are not
+finished yet.
+- Added a selector to allow the user to change the color of the objects they draw in each view.
+- Added sliders to the Result Canvas (i.e. the canvas that contains the 3D model after the user submits their 2D drawings) to allow the user to alter the translation, rotation and scale of their 3D object in real-time.
+- Began working on a function to allow the user to view their object from multiple angles.
 
 How to Run:
 Project is web-browser based, so opening the html in the project file should be sufficient.
