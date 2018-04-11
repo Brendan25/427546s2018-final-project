@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="project.css" />
+        <script src="project.js"></script>
+    </head>
+    <body>
+        
+        <div id="selection" class="choose">
+            <span class="menu"><input id="transform" value="Convert To 3D" class="submit" type="button" /></span>
+            <span class="menu"><input id="new" value="New 3D Object" class="submit" type="button" /></span>
+        </div>
+        <div id="front" class="container">
+            <div class="sides">
+                <p>Front:</p>
+                <canvas id="frontCanvas" class="generic" width="600px" height="600px"></canvas>
+                <div id="drawing" class="canvas_choose">
+                    <span class="canvas_menu"><input id="frontLine" value="New Line" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="frontPolyline" value="New Polyline" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="frontCircle" value="New Circle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="frontTriangle" value="New Triangle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="frontRectangle" value="New Rectangle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="frontPolygon" value="New Custom Polygon" class="submit" type="button" /></span>
+                </div>
+            </div>
+            <div id="side" class="sides">
+                <p>Side:</p>
+                <canvas id="sideCanvas" class="generic" width="600px" height="600px"></canvas>
+                <div id="drawing" class="canvas_choose">
+                    <span class="canvas_menu"><input id="sideLine" value="New Line" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="sidePolyline" value="New Polyline" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="sideCircle" value="New Circle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="sideTriangle" value="New Triangle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="sideRectangle" value="New Rectangle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="sidePolygon" value="New Custom Polygon" class="submit" type="button" /></span>
+                </div>
+            </div>
+            <div id="top" class="sides">
+                <p>Top:</p>
+                <canvas id="topCanvas" class="generic" width="600px" height="600px"></canvas>
+                <div id="drawing" class="canvas_choose">
+                    <span class="canvas_menu"><input id="topLine" value="New Line" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="topPolyline" value="New Polyline" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="topCircle" value="New Circle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="topTriangle" value="New Triangle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="topRectangle" value="New Rectangle" class="submit" type="button" /></span>
+                    <span class="canvas_menu"><input id="topPolygon" value="New Custom Polygon" class="submit" type="button" /></span>
+                </div>
+            </div>
+        </div>
+        <div id="master" class="sides">
+            <p>Result:</p>
+            <canvas id="masterCanvas" class="generic" width="600px" height="600px"></canvas>
+        </div>
+    </body>
+</html>

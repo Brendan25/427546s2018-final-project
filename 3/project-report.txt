@@ -1,0 +1,44 @@
+Name: Brendan Jacques
+
+Student ID: 01419198
+
+Computer Graphics: Progress Report 2
+
+Objective: To complete part 1 of the Final Project using WebGL as the backend.
+I hoped to allow the user to draw rudimentary 2D objects in their web browser that would then be linked together and drawn as a 3D image.
+
+Degree of Progress: 60%
+
+Work Description: Constructed a WebGL application that presents the user with
+three canvases, each representing a view of the 3D model being created. From there,
+using a menu of options presented below each canvas and by clicking points on the canvas,
+the user can draw a 2D object onto each canvas, with the drawing appearing in real-time
+in 2D. This feature is working, though there's currently a glitch where only one
+shape drawn by the user appears in the canvas at a time. This doesn't pose a huge problem however
+as every shape given to the canvas still has its vector coordinates logged for the 3D object later.
+
+Created a function that, once the user completes their drawings, they press a button
+to compile every vector coordinate used in the three previous drawings and collects them
+into one array to be passed to WebGL to convert into a 3D model that is then displayed
+on a fourth, non-interactive canvas that is only visible when the 3D model is made.
+At the moment, the 3D model isn't being generated properly, most likely due to issues
+with giving the 3D model a proper, visible texture. However, the vector coordinates are
+being gathered properly and can be passed to WebGL without error.
+
+How to Run:
+Project is web-browser based, so opening the html in the project file should be sufficient.
+
+Link to WebLab Page: http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/2/project.html
+
+Sources:
+1) https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/ 
+I took the getMousePos function used in this tutorial for use in calculating the mouse's position on the canvas. 
+
+2) https://stackoverflow.com/questions/42309715/how-to-correctly-pass-mouse-coordinates-to-webgl
+Modified the getMousePos above with additions from this tutorial in order to make the function work with WebGL.
+
+3)https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
+Used this website as a learning tool for understanding how to create 2D models in WebGL. The createShader() and createProgram() functions in my code were
+copied from here. The majority of code for draw2D() and draw3D() were also taken from here, though with modifications to suit my project's needs.
+
+The remainder of the code present is my own.

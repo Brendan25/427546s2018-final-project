@@ -1,0 +1,60 @@
+#master{
+    display: none;
+}
+
+canvas.generic{
+    border: 2px solid black;
+    display: inline-block;
+}
+
+input.loc {
+    width: 200px;
+    font-size: 20px;
+}
+
+input.submit {
+    height: 50px;
+    width: 100%
+}
+
+input.submit2 {
+    height: 30px;
+}
+
+div.choose {
+    display: table;
+    width: 100%;
+    border-spacing: 5px;
+}
+
+div.canvas_choose {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    margin-top: -605px;
+    margin-left: 605px;
+}
+
+div.fractal-choose {
+    display: inline-block;
+    width: 100%;
+}
+
+div.sides {
+    display: block;
+    height: 650px;
+    width: 800px;
+    margin: 0;
+}
+
+span.menu {
+    display: table-cell;
+    width: 100px;
+    height: 60px;
+}
+
+span.canvas_menu {
+    display: block;
+    width: 150px;
+    height: 50px
+}
