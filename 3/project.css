@@ -14,7 +14,12 @@ input.loc {
 
 input.submit {
     height: 50px;
-    width: 100%
+    width: 100%;
+}
+
+select.submit, span.submit {
+    height: 25px;
+    width: 100%;
 }
 
 input.submit2 {

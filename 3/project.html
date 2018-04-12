@@ -20,6 +20,19 @@
                     <span class="canvas_menu"><input id="frontTriangle" value="New Triangle" class="submit" type="button" /></span>
                     <span class="canvas_menu"><input id="frontRectangle" value="New Rectangle" class="submit" type="button" /></span>
                     <span class="canvas_menu"><input id="frontPolygon" value="New Custom Polygon" class="submit" type="button" /></span>
+                    <span class="canvas_menu">
+                        <span class="submit">Shape Color:</span>
+                        <select id="frontColor" class="submit" list="colors">
+                            <option value="black">Black</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="pink">Pink</option>
+                            <option value="purple">Purple</option>
+                            <option value="brown">Brown</option>
+                        </select>
+                    </span>
                 </div>
             </div>
             <div id="side" class="sides">
@@ -32,6 +45,19 @@
                     <span class="canvas_menu"><input id="sideTriangle" value="New Triangle" class="submit" type="button" /></span>
                     <span class="canvas_menu"><input id="sideRectangle" value="New Rectangle" class="submit" type="button" /></span>
                     <span class="canvas_menu"><input id="sidePolygon" value="New Custom Polygon" class="submit" type="button" /></span>
+                    <span class="canvas_menu">
+                        <span class="submit">Shape Color:</span>
+                        <select id="sideColor" class="submit" list="colors">
+                            <option value="black">Black</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="pink">Pink</option>
+                            <option value="purple">Purple</option>
+                            <option value="brown">Brown</option>
+                        </select>
+                    </span>
                 </div>
             </div>
             <div id="top" class="sides">
@@ -44,12 +70,36 @@
                     <span class="canvas_menu"><input id="topTriangle" value="New Triangle" class="submit" type="button" /></span>
                     <span class="canvas_menu"><input id="topRectangle" value="New Rectangle" class="submit" type="button" /></span>
                     <span class="canvas_menu"><input id="topPolygon" value="New Custom Polygon" class="submit" type="button" /></span>
+                    <span class="canvas_menu">
+                        <span class="submit">Shape Color:</span>
+                        <select id="topColor" class="submit" list="colors">
+                            <option value="black">Black</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="pink">Pink</option>
+                            <option value="purple">Purple</option>
+                            <option value="brown">Brown</option>
+                        </select>
+                    </span>
                 </div>
             </div>
         </div>
         <div id="master" class="sides">
             <p>Result:</p>
             <canvas id="masterCanvas" class="generic" width="600px" height="600px"></canvas>
+            <div id="drawing" class="canvas_choose">
+                <div>X: <input id="x" type="range" min="0" max="600" value="0" /></div>
+                <div>Y: <input id="y" type="range" min="0" max="600" value="0" /></div>
+                <div>Z: <input id="z" type="range" min="0" max="600" value="0" /></div>
+                <div>angleX: <input id="angleX" type="range" min="0" max="360" value="0" /></div>
+                <div>angleY: <input id="angleY" type="range" min="0" max="360" value="0" /></div>
+                <div>angleZ: <input id="angleZ" type="range" min="0" max="360" value="0" /></div>
+                <div>scaleX: <input id="scaleX" type="range" min="10" max="30" value="10" /></div>
+                <div>scaleY: <input id="scaleY" type="range" min="10" max="30" value="10" /></div>
+                <div>scaleZ: <input id="scaleZ" type="range" min="10" max="30" value="10" /></div>
+            </div>
         </div>
     </body>
 </html>
