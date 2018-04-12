@@ -1,2 +1,26 @@
-A manual is not required for this project because this project is run entirely using WebGL. All that's required to run
-it is to open the project.html file in your web browser.
+This project runs entirely in WebGL. All that's needed to start the project up is to open the html file
+in a web browser that supports WebGL.
+
+How to Use:
+- In the UI, you'll see three different canvases, each representing one 3D object view.
+- Next to each canvas, you'll also see several buttons and a color list. These are used
+for selecting the shapes you'd like to draw on the canvas and what color the resulting shape will be.
+- To draw, simply click on the canvas at each point where you'd like to place a vertex. By default,
+  the program is set to draw a black line. Once the required number of points have been given, the
+  program will draw the requested shape at the points given.
+
+  Minimum number of points per shape:
+	Line: 2 per line
+	Polyline: 2 for the first line, then 1 more point for each subsequent line
+	Triangle: 3 per triangle
+	Custom Polygon: 3 for the first triangle, then 1 more point for each subsequent shape.
+
+- To stop drawing one shape and start a new one on the same canvas without erasing the previous,
+click one of the new shape buttons on the right side of the canvas. This will save your previous shape
+and let you draw new shapes alongside it.
+- Once all shapes are drawn, click "Convert to 3D" to generate the 3D model. This will remove the front,
+side and top canvases from view and replace them with the Result canvas, which contains the object.
+- To alter the position, rotation and scale of the 3D model, use the sliders to the right of the Results
+canvas.
+- To create a new 3D model or reset the 2D canvases, press the "New 3D Object" button. This resets
+each canvas back to a default state.

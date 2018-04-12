@@ -10,18 +10,20 @@ Degree of Progress: 100%
 
 Work Description: 
 - Finished work on Part 1 of the Project. My application can now display a 3D image drawn by the user through
-a modified interface similar to that used in Assignment 1 and 2.
+a modified interface similar to that used in Assignment 1 and 2. At the moment, the three sides of the object
+are not properly connected. Will need to improve later to attach them more properly. They are being drawn
+in 3D space though.
 - Added Buttons that allow the user to draw specific shapes onto each view canvas besides lines and polylines. At the moment,
 this includes triangles and custom polygons. Also working on buttons for drawing circles and rectangles, though those features are not
 finished yet.
 - Added a selector to allow the user to change the color of the objects they draw in each view.
-- Added sliders to the Result Canvas (i.e. the canvas that contains the 3D model after the user submits their 2D drawings) to allow the user to alter the translation, rotation and scale of their 3D object in real-time.
-- Began working on a function to allow the user to view their object from multiple angles.
+- Added sliders to the Result Canvas (i.e. the canvas that contains the 3D model after the user submits their 2D drawings) 
+to allow the user to alter the translation, rotation and scale of their 3D object in real-time.
 
 How to Run:
 Project is web-browser based, so opening the html in the project file should be sufficient.
 
-Link to WebLab Page: http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/2/project.html
+Link to WebLab Page: http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/3/project.html
 
 Sources:
 1) https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/ 
@@ -33,5 +35,9 @@ Modified the getMousePos above with additions from this tutorial in order to mak
 3)https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
 Used this website as a learning tool for understanding how to create 2D models in WebGL. The createShader() and createProgram() functions in my code were
 copied from here. The majority of code for draw2D() and draw3D() were also taken from here, though with modifications to suit my project's needs.
+
+4)https://webglfundamentals.org/webgl/lessons/webgl-3d-orthographic.html
+Ended up using more code from this website, specifically their matrix model for modifying the positions of 3D
+objects in the canvas. Commented over the functions I re-used in my js file.
 
 The remainder of the code present is my own.

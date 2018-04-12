@@ -11,8 +11,8 @@ function createShader(gl, type, source) {
   gl.deleteShader(shader);
 }
 
+//** BEGIN Code taken from WebGLFundamentals tutorials on performing transformations in 3D. ***
 //Multiplies the translation, rotation, and scale matrices of the 3D object and a change matrix together in order to apply a change.
-//** The below code was taken almost verbatim from the WebGLFundamentals tutorials on performing transformations in 3D. ***
 function multiply(orig, change) {
     var orig00 = orig[0 * 4 + 0];
     var orig01 = orig[0 * 4 + 1];
@@ -140,6 +140,9 @@ function zRotate(matrix, masterAngle) {
 function reScale(matrix, scale) {
     return multiply(matrix, rS(scale));
 }
+
+//*** END Code taken verbatim from WEBGL Fundamentals. 
+//*** BEGIN Code modified from code found on WEBGL Fundamentals
 
 function createProgram(gl, vertexShader, fragmentShader) {
   var program = gl.createProgram();
@@ -308,8 +311,21 @@ function draw3D(gl, positions, count, prim, color, translation, angle, scale) {
     //gl.uniform3fv(translationLocation, translation);
     gl.drawArrays(primitiveType, offset, count);
 }
+// *** END Code modified from code found on WEBGL Fundamentals
 
-// *** Below this point is fully original code.
+// *** BEGIN getMousePosition code taken from html5CanvasTutorials.com
+function getMousePosition(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    var varX = (evt.clientX - rect.left);
+    var varY = (evt.clientY - rect.top);
+    return{
+        x: varX,
+        y: varY
+    };
+}
+// *** END
+
+// *** BEGIN ORIGINAL CODE
 
 function toggleCanvas() {
     document.getElementById("front").style.display = "none";
@@ -326,18 +342,6 @@ function toggleCanvas2() {
     document.getElementById("master").style.display = "none";
     document.getElementById("transform").style.display = "block";
 }
-
-function getMousePosition(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    var varX = (evt.clientX - rect.left);
-    var varY = (evt.clientY - rect.top);
-    return{
-        x: varX,
-        y: varY
-    };
-}
-
-
 
 function drawMaster(gl, master3D, masterTypes, masterColor, masterTranslation, masterAngle, masterScale) {
     var coordinate_num;
@@ -962,3 +966,4 @@ window.onload = function() {
         drawMaster(masterGL, master3D, masterTypes, masterColor, masterTranslation, masterAngle, masterScale);
     });
 }
+// *** END Original Code
