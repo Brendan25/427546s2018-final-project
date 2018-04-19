@@ -27,13 +27,15 @@ Project is web-browser based, so opening the html in the project file should be 
 
 Link to WebLab Page: http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/4/project.html
 
+Note: Code from the incorrect version of the project has been saved in the old_code folder for posterity.
+
 Sources:
 
-3)https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
+1)https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
 Used this website as a learning tool for understanding how to create 2D and 3D models in WebGL. The createShader() and createProgram() functions in my code were
 copied from here. The majority of code for draw2D() and draw3D() were also taken from here, though with modifications to suit my project's needs.
 
-4)https://webglfundamentals.org/webgl/lessons/webgl-3d-orthographic.html
+2)https://webglfundamentals.org/webgl/lessons/webgl-3d-orthographic.html
 Ended up using more code from this website, specifically their matrix model for modifying the positions of 3D
 objects in the canvas. Commented over the functions I re-used in my js file.
 
