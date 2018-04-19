@@ -1,0 +1,40 @@
+Name: Brendan Jacques
+
+Student ID: 01419198
+
+Computer Graphics: Progress Report 4
+
+Objective: To complete steps 3 and 4 of the Final Project, specifically improving camera
+viewing angles and creating light sources.
+
+Degree of Progress: 50%
+
+Work Description: 
+- Improved color assignning function to allow for easy color assignment in future templates.
+- Created a basic 3D model of a house to use as a template. Other templates to come.
+- Improved the camera control functions so that the 3D model generated would always appear
+first within the bounds of the canvas.
+- Reconfigured my entire project at the last minute. Apparently I mis-understood the original
+rubric and my project went beyond the scope required by the class, so ended up scaling
+back almost every feature I've been working on. The user no longer has the ability to create
+3D objects themselves. Instead they are currently only able to manipulate 3D templates.
+- Fell behind on the project due to this setback. Will be spending the remainder of time
+  until the due date course correcting. My goal for next week is to have external light sources set up,
+  alternative projections of the object, and finer camera controls. Maybe texture mappings if I have time.
+
+How to Run:
+Project is web-browser based, so opening the html in the project file should be sufficient.
+
+Link to WebLab Page: http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/4/project.html
+
+Sources:
+
+3)https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
+Used this website as a learning tool for understanding how to create 2D and 3D models in WebGL. The createShader() and createProgram() functions in my code were
+copied from here. The majority of code for draw2D() and draw3D() were also taken from here, though with modifications to suit my project's needs.
+
+4)https://webglfundamentals.org/webgl/lessons/webgl-3d-orthographic.html
+Ended up using more code from this website, specifically their matrix model for modifying the positions of 3D
+objects in the canvas. Commented over the functions I re-used in my js file.
+
+The remainder of the code present is my own.

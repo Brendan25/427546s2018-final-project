@@ -225,6 +225,8 @@ function draw2D(gl, positions, count, prim, color) {
             primitiveType = gl.TRIANGLES;
         } else if(prim == "TRIANGLE_FAN") {
             primitiveType = gl.TRIANGLE_FAN;
+        } else if(prim == "TRIANGLE_STRIP") {
+            primitiveType = gl.TRIANGLE_STRIP;
         }
     
         gl.uniform4fv(colorLocation, color);
@@ -293,6 +295,8 @@ function draw3D(gl, positions, count, prim, color, translation, angle, scale) {
         primitiveType = gl.TRIANGLES;
     } else if(prim == "TRIANGLE_FAN") {
         primitiveType = gl.TRIANGLE_FAN;
+    } else if(prim == "TRIANGLE_STRIP") {
+        primitiveType = gl.TRIANGLE_STRIP;
     }
     
     gl.uniform4fv(colorLocation, color);
@@ -361,14 +365,12 @@ function drawMaster(gl, master3D, masterTypes, masterColor, masterTranslation, m
                     shape = "LINE_STRIP";
                 } else if(masterTypes[i] == "circle") {
                     shape = "TRIANGLE_FAN";
-                    //More needed here.
                 } else if(masterTypes[i] == "triangle") {
                     shape = "TRIANGLE";
                 } else if(masterTypes[i] == "rectangle") {
-                    shape = "TRIANGLE";
-                    //More needed here
+                    shape = "TRIANGLE_FAN";
                 } else if(masterTypes[i] == "polygon") {
-                    //Dunno yet.
+                    shape = "TRIANGLE_STRIP";
                 }
 
                 if(masterColor[i] == "black") {
@@ -443,7 +445,7 @@ window.onload = function() {
     topTypes.push("line");
     topColor.push("black");
     
-    var master3D = new Array();
+    var master3D = new Array(); var masterSize = 0; 
     var masterTypes = new Array();
     var masterColor = new Array();
     var masterTranslation = [0, 0, 0];
@@ -464,37 +466,37 @@ window.onload = function() {
         f++;
         frontA[f] = new Array();
         frontTypes.push("line");
-        frontColor.push("black");
+        frontColor.push(document.getElementById("frontColor").value);
     });
     document.getElementById("frontPolyline").addEventListener("click", function(evt) {
         f++;
         frontA[f] = new Array();
         frontTypes.push("polyline");
-        frontColor.push("black");
+        frontColor.push(document.getElementById("frontColor").value);
     });
     document.getElementById("frontCircle").addEventListener("click", function(evt) {
         f++;
         frontA[f] = new Array();
         frontTypes.push("circle");
-        frontColor.push("black");
+        frontColor.push(document.getElementById("frontColor").value);
     });
     document.getElementById("frontTriangle").addEventListener("click", function(evt) {
         f++;
         frontA[f] = new Array();
         frontTypes.push("triangle");
-        frontColor.push("black");
+        frontColor.push(document.getElementById("frontColor").value);
     });
     document.getElementById("frontRectangle").addEventListener("click", function(evt) {
         f++;
         frontA[f] = new Array();
         frontTypes.push("rectangle");
-        frontColor.push("black");
+        frontColor.push(document.getElementById("frontColor").value);
     });
     document.getElementById("frontPolygon").addEventListener("click", function(evt) {
         f++;
         frontA[f] = new Array();
         frontTypes.push("polygon");
-        frontColor.push("black");
+        frontColor.push(document.getElementById("frontColor").value);
     });
     document.getElementById("frontColor").addEventListener("change", function(evt) {
         frontColor.pop();
@@ -506,37 +508,37 @@ window.onload = function() {
         s++;
         sideA[s] = new Array();
         sideTypes.push("line");
-        sideColor.push("black");
+        sideColor.push(document.getElementById("sideColor").value);
     });
     document.getElementById("sidePolyline").addEventListener("click", function(evt) {
         s++;
         sideA[s] = new Array();
         sideTypes.push("polyline");
-        sideColor.push("black");
+        sideColor.push(document.getElementById("sideColor").value);
     });
     document.getElementById("sideCircle").addEventListener("click", function(evt) {
         s++;
         sideA[s] = new Array();
         sideTypes.push("circle");
-        sideColor.push("black");
+        sideColor.push(document.getElementById("sideColor").value);
     });
     document.getElementById("sideTriangle").addEventListener("click", function(evt) {
         s++;
         sideA[s] = new Array();
         sideTypes.push("triangle");
-        sideColor.push("black");
+        sideColor.push(document.getElementById("sideColor").value);
     }); 
     document.getElementById("sideRectangle").addEventListener("click", function(evt) {
         s++;
         sideA[s] = new Array();
         sideTypes.push("rectangle");
-        sideColor.push("black");
+        sideColor.push(document.getElementById("sideColor").value);
     });
     document.getElementById("sidePolygon").addEventListener("click", function(evt) {
         s++;
         sideA[s] = new Array();
         sideTypes.push("polygon");
-        sideColor.push("black");
+        sideColor.push(document.getElementById("sideColor").value);
     });
     document.getElementById("sideColor").addEventListener("change", function(evt) {
         sideColor.pop();
@@ -548,37 +550,37 @@ window.onload = function() {
         t++;
         topA[t] = new Array();
         topTypes.push("line");
-        topColor.push("black");
+        topColor.push(document.getElementById("topColor").value);
     });
     document.getElementById("topPolyline").addEventListener("click", function(evt) {
         t++;
         topA[t] = new Array();
         topTypes.push("polyline");
-        topColor.push("black");
+        topColor.push(document.getElementById("topColor").value);
     });
     document.getElementById("topCircle").addEventListener("click", function(evt) {
         t++;
         topA[t] = new Array();
         topTypes.push("circle");
-        topColor.push("black");
+        topColor.push(document.getElementById("topColor").value);
     });
     document.getElementById("topTriangle").addEventListener("click", function(evt) {
         t++;
         topA[t] = new Array();
         topTypes.push("triangle");
-        topColor.push("black");
+        topColor.push(document.getElementById("topColor").value);
     });  
     document.getElementById("topRectangle").addEventListener("click", function(evt) {
         t++;
         topA[t] = new Array();
         topTypes.push("rectangle");
-        topColor.push("black");
+        topColor.push(document.getElementById("topColor").value);
     });
     document.getElementById("topPolygon").addEventListener("click", function(evt) {
         t++;
         topA[t] = new Array();
         topTypes.push("polygon");
-        topColor.push("black");
+        topColor.push(document.getElementById("topColor").value);
     });
     document.getElementById("topColor").addEventListener("change", function(evt) {
         topColor.pop();
@@ -594,8 +596,39 @@ window.onload = function() {
         var counter = 0;
         var color;
         
-        frontA[f].push(newX);
-        frontA[f].push(newY);
+        var rad = 300 + (10 * parseInt(document.getElementById("frontRadius").value));
+        var radius = (rad / 600) * 2 - 1;
+        
+        if(frontTypes[f] == "circle") {
+            for (var i = 0; i <= 200; i++){
+                frontA[f].push(newX + radius*Math.cos(i*2*Math.PI/200));
+                frontA[f].push(newY + radius*Math.sin(i*2*Math.PI/200));
+            } 
+            f++;
+            frontA[f] = new Array();
+            frontTypes.push("circle");
+            frontColor.push(document.getElementById("frontColor").value);
+        } else if(frontTypes[f] == "rectangle") {
+            if(frontA[f][0] == null) {
+                frontA[f].push(newX);
+                frontA[f].push(newY);
+            } else {
+                frontA[f].push(newX);
+                frontA[f].push(frontA[f][1]);
+                frontA[f].push(newX);
+                frontA[f].push(newY);
+                frontA[f].push(frontA[f][0]);
+                frontA[f].push(newY);
+                
+                f++;
+                frontA[f] = new Array();
+                frontTypes.push("rectangle");
+                frontColor.push(document.getElementById("frontColor").value);
+            }
+        } else {
+            frontA[f].push(newX);
+            frontA[f].push(newY);
+        }
         
         //While there are still undrawn shapes stored in frontA...
         frontGL.clearColor(0, 0, 0, 0);
@@ -611,15 +644,12 @@ window.onload = function() {
                     shape = "LINE_STRIP";
                 } else if(frontTypes[counter] == "circle") {
                     shape = "TRIANGLE_FAN";
-                    //More needed here.
                 } else if(frontTypes[counter] == "triangle") {
                     shape = "TRIANGLE";
                 } else if(frontTypes[counter] == "rectangle") {
-                    shape = "TRIANGLE";
-                    //More needed here
-                } else if(frontTypes[counter] == "polygon") {
-                    //Dunno yet.
                     shape = "TRIANGLE_FAN";
+                } else if(frontTypes[counter] == "polygon") {
+                    shape = "TRIANGLE_STRIP";
                 }
                 
                 if(frontColor[counter] == "black") {
@@ -627,17 +657,17 @@ window.onload = function() {
                 } else if(frontColor[counter] == "red") {
                     color = [1.0, 0.0, 0.0, 1.0];
                 } else if(frontColor[counter] == "blue") {
-                    color = [0.0, 1.0, 0.0, 1.0];
-                } else if(frontColor[counter] == "green") {
                     color = [0.0, 0.0, 1.0, 1.0];
+                } else if(frontColor[counter] == "green") {
+                    color = [0.0, 1.0, 0.0, 1.0];
                 } else if(frontColor[counter] == "yellow") {
                     color = [1.0, 1.0, 0.0, 1.0];
                 } else if(frontColor[counter] == "pink") {
-                    color = [1.0, 0.0, 0.25, 1.0];
-                } else if(frontColor[counter] == "purple") {
                     color = [1.0, 0.0, 1.0, 1.0];
+                } else if(frontColor[counter] == "purple") {
+                    color = [0.4, 0.0, 0.4, 1.0];
                 } else if(frontColor[counter] == "brown") {
-                    color = [1.0, 1.0, 1.0, 1.0];
+                    color = [0.4, 0.2, 0.0, 1.0];
                 }
                 draw2D(frontGL, frontA[counter], ((frontA[counter].length) / 2), shape, color);
             }
@@ -659,8 +689,39 @@ window.onload = function() {
         var counter = 0;
         var color;
         
-        sideA[s].push(newX);
-        sideA[s].push(newY);
+        var rad = 300 + (10 * parseInt(document.getElementById("sideRadius").value));
+        var radius = (rad / 600) * 2 - 1;
+        
+        if(sideTypes[s] == "circle") {
+            for (var i = 0; i <= 200; i++){
+                sideA[s].push(newX + radius*Math.cos(i*2*Math.PI/200));
+                sideA[s].push(newY + radius*Math.sin(i*2*Math.PI/200));
+            } 
+            s++;
+            sideA[s] = new Array();
+            sideTypes.push("circle");
+            sideColor.push(document.getElementById("sideColor").value);
+        } else if(sideTypes[s] == "rectangle") {
+            if(sideA[s][0] == null) {
+                sideA[s].push(newX);
+                sideA[s].push(newY);
+            } else {
+                sideA[s].push(newX);
+                sideA[s].push(sideA[s][1]);
+                sideA[s].push(newX);
+                sideA[s].push(newY);
+                sideA[s].push(sideA[s][0]);
+                sideA[s].push(newY);
+                
+                s++;
+                sideA[s] = new Array();
+                sideTypes.push("rectangle");
+                sideColor.push(document.getElementById("sideColor").value);
+            }
+        } else {
+            sideA[s].push(newX);
+            sideA[s].push(newY);
+        }
         
         //While there are still undrawn shapes stored in sideA...
         sideGL.clearColor(0, 0, 0, 0);
@@ -676,14 +737,12 @@ window.onload = function() {
                     shape = "LINE_STRIP";
                 } else if(sideTypes[counter] == "circle") {
                     shape = "TRIANGLE_FAN";
-                    //More needed here.
                 } else if(sideTypes[counter] == "triangle") {
                     shape = "TRIANGLE";
                 } else if(sideTypes[counter] == "rectangle") {
-                    shape = "TRIANGLE";
-                    //More needed here
+                    shape = "TRIANGLE_FAN";
                 } else if(sideTypes[counter] == "polygon") {
-                    //Dunno yet.
+                    shape = "TRIANGLE_STRIP";
                 }
                 
                 if(sideColor[counter] == "black") {
@@ -691,17 +750,17 @@ window.onload = function() {
                 } else if(sideColor[counter] == "red") {
                     color = [1.0, 0.0, 0.0, 1.0];
                 } else if(sideColor[counter] == "blue") {
-                    color = [0.0, 1.0, 0.0, 1.0];
-                } else if(sideColor[counter] == "green") {
                     color = [0.0, 0.0, 1.0, 1.0];
+                } else if(sideColor[counter] == "green") {
+                    color = [0.0, 1.0, 0.0, 1.0];
                 } else if(sideColor[counter] == "yellow") {
                     color = [1.0, 1.0, 0.0, 1.0];
                 } else if(sideColor[counter] == "pink") {
-                    color = [1.0, 0.0, 0.25, 1.0];
-                } else if(sideColor[counter] == "purple") {
                     color = [1.0, 0.0, 1.0, 1.0];
+                } else if(sideColor[counter] == "purple") {
+                    color = [0.4, 0.0, 0.4, 1.0];
                 } else if(sideColor[counter] == "brown") {
-                    color = [1.0, 1.0, 1.0, 1.0];
+                    color = [0.4, 0.2, 0.0, 1.0];
                 }
                 draw2D(sideGL, sideA[counter], ((sideA[counter].length) / 2), shape, color);
             }
@@ -721,8 +780,39 @@ window.onload = function() {
         var shape;
         var counter = 0;
         
-        topA[t].push(newX);
-        topA[t].push(newY);
+        var rad = 300 + (10 * parseInt(document.getElementById("topRadius").value));
+        var radius = (rad / 600) * 2 - 1;
+        
+        if(topTypes[t] == "circle") {
+            for (var i = 0; i <= 200; i++){
+                topA[t].push(newX + radius*Math.cos(i*2*Math.PI/200));
+                topA[t].push(newY + radius*Math.sin(i*2*Math.PI/200));
+            } 
+            t++;
+            topA[t] = new Array();
+            topTypes.push("circle");
+            topColor.push(document.getElementById("topColor").value);
+        } else if(topTypes[t] == "rectangle") {
+            if(topA[t][0] == null) {
+                topA[t].push(newX);
+                topA[t].push(newY);
+            } else {
+                topA[t].push(newX);
+                topA[t].push(topA[t][1]);
+                topA[t].push(newX);
+                topA[t].push(newY);
+                topA[t].push(topA[t][0]);
+                topA[t].push(newY);
+                
+                t++;
+                topA[t] = new Array();
+                sideTypes.push("rectangle");
+                sideColor.push(document.getElementById("topColor").value);
+            }
+        } else {
+            topA[t].push(newX);
+            topA[t].push(newY);
+        }
         
         //While there are still undrawn shapes stored in topA...
         topGL.clearColor(0, 0, 0, 0);
@@ -742,10 +832,10 @@ window.onload = function() {
                 } else if(topTypes[counter] == "triangle") {
                     shape = "TRIANGLE";
                 } else if(topTypes[counter] == "rectangle") {
-                    shape = "TRIANGLE";
+                    shape = "TRIANGLE_FAN";
                     //More needed here
                 } else if(topTypes[counter] == "polygon") {
-                    //Dunno yet.
+                    spape = "TRIANGLE_STRIP";
                 }
                 
                 if(topColor[counter] == "black") {
@@ -753,17 +843,17 @@ window.onload = function() {
                 } else if(topColor[counter] == "red") {
                     color = [1.0, 0.0, 0.0, 1.0];
                 } else if(topColor[counter] == "blue") {
-                    color = [0.0, 1.0, 0.0, 1.0];
-                } else if(topColor[counter] == "green") {
                     color = [0.0, 0.0, 1.0, 1.0];
+                } else if(topColor[counter] == "green") {
+                    color = [0.0, 1.0, 0.0, 1.0];
                 } else if(topColor[counter] == "yellow") {
                     color = [1.0, 1.0, 0.0, 1.0];
                 } else if(topColor[counter] == "pink") {
-                    color = [1.0, 0.0, 0.25, 1.0];
-                } else if(topColor[counter] == "purple") {
                     color = [1.0, 0.0, 1.0, 1.0];
+                } else if(topColor[counter] == "purple") {
+                    color = [0.4, 0.0, 0.4, 1.0];
                 } else if(topColor[counter] == "brown") {
-                    color = [1.0, 1.0, 1.0, 1.0];
+                    color = [0.4, 0.2, 0.0, 1.0];
                 }
                 draw2D(topGL, topA[counter], ((topA[counter].length) / 2), shape, color);
             }
@@ -880,14 +970,6 @@ window.onload = function() {
               
     });
     document.getElementById("new").addEventListener("click", function(evt) {
-        frontGL.clearColor(0, 0, 0, 0);
-        frontGL.clear(frontGL.COLOR_BUFFER_BIT);
-        sideGL.clearColor(0, 0, 0, 0);
-        sideGL.clear(frontGL.COLOR_BUFFER_BIT);
-        topGL.clearColor(0, 0, 0, 0);
-        topGL.clear(frontGL.COLOR_BUFFER_BIT);
-        masterGL.clearColor(0, 0, 0, 0);
-        masterGL.clear(frontGL.COLOR_BUFFER_BIT);
         frontA = [];
         sideA = [];
         topA = [];
@@ -901,11 +983,19 @@ window.onload = function() {
         frontColor = []; frontColor[0] = "black";
         sideColor = []; sideColor[0] = "black";
         topColor = []; topColor[0] = "black";
+        frontGL.clearColor(0, 0, 0, 0);
+        frontGL.clear(frontGL.COLOR_BUFFER_BIT);
+        sideGL.clearColor(0, 0, 0, 0);
+        sideGL.clear(frontGL.COLOR_BUFFER_BIT);
+        topGL.clearColor(0, 0, 0, 0);
+        topGL.clear(frontGL.COLOR_BUFFER_BIT);
+        toggleCanvas2();
+        masterGL.clearColor(0, 0, 0, 0);
+        masterGL.clear(frontGL.COLOR_BUFFER_BIT);
         master3D = [];
         masterTypes = []; 
         masterColor = [];
         masterTranslation = [0, 0, 0];
-        toggleCanvas2();
     });
     
     document.getElementById("x").addEventListener("change", function(evt) {
@@ -913,6 +1003,8 @@ window.onload = function() {
         masterGL.clearColor(0, 0, 0, 0);
         masterGL.clear(frontGL.COLOR_BUFFER_BIT);
         drawMaster(masterGL, master3D, masterTypes, masterColor, masterTranslation, masterAngle, masterScale);
+        document.getElementById("xVal").removeChild(document.getElementById("xVal").firstChild);
+        document.getElementById("xVal").appendChild()
     });
     document.getElementById("y").addEventListener("change", function(evt) {
         masterTranslation[1] = parseFloat(document.getElementById("y").value);

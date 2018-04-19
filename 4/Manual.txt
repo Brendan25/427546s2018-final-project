@@ -1,0 +1,6 @@
+This project runs entirely in WebGL. All that's needed to start the project up is to open the html file
+in a web browser that supports WebGL.
+
+How to Use:
+- To alter the 3D model's position, rotation and scale, use the sliders to the right of the Results
+canvas.
