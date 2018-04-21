@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>B.Jacques Final Project</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 800px; height: 800px; }
+		</style>
+	</head>
+	<body>
+		<script src="./three.js-master/build/three.min.js"></script>
+        <script src="./three.js-master/examples/js/controls/OrbitControls.js"></script>
+		<script src="project.js"></script>
+        <div id="translate">
+            <span>Translate: </span>
+            <span><input id="xTranslate" type="range" min="-10" max="10" value="0" /></span>
+            <span><input id="yTranslate" type="range" min="-10" max="10" value="0" /></span>
+            <span><input id="zTranslate" type="range" min="-10" max="10" value="0" /></span>
+        </div>
+        <div id="rotate">
+            <span>Rotate Object: </span>
+            <span><input id="xRotate" type="range" min="0" max="4" value="0" /></span>
+            <span><input id="yRotate" type="range" min="0" max="4" value="0" /></span>
+            <span><input id="zRotate" type="range" min="0" max="4" value="0" /></span>
+        </div>
+        <div id="scale">
+            <span>Scale Object: </span>
+            <span><input id="xScale" type="range" min="1" max="5" value="1" /></span>
+            <span><input id="yScale" type="range" min="1" max="5" value="1" /></span>
+            <span><input id="zScale" type="range" min="1" max="5" value="1" /></span>
+        </div>
+        <div id="shear">
+            <span>Shear Object: </span>
+            <span><input id="xShear" type="range" min="0" max="5" value="0" /></span>
+            <span><input id="yShear" type="range" min="0" max="5" value="0" /></span>
+            <span><input id="zShear" type="range" min="0" max="5" value="0" /></span>
+        </div>
+	</body>
+</html>
