@@ -3,11 +3,20 @@ window.onload = function() {
     var rotX, rotY, rotZ; //Used for rotations.
     var scaX, scaY, scaZ; //Used for scaling.
     var sheX, sheY, sheZ; //Used for shearing.
+    var oneP, twoP, threeP; //Used for perspective projection.
     
     var traRX = 0, traRY = 0, traRZ = 0; //Used for reverse translations.
     var rotRX = 0, rotRY = 0, rotRZ = 0; //Used for reverse rotations.
     var scaRX = 1, scaRY = 1, scaRZ = 1; //Used for reverse scaling.
     var sheRX = 0, sheRY = 0, sheRZ = 0; //Used for reverse shearing.
+    var onePRX = 0, twoPRX = 0, threePRX = 0;
+    
+    var loader = new THREE.TextureLoader();
+    
+    var frustumSize = 100;
+    var aspect = window.innerWidth / window.innerHeight;
+
+    loader.setCrossOrigin("");
     
     traX = parseInt(document.getElementById("xTranslate").value);
     traY = parseInt(document.getElementById("yTranslate").value);
@@ -25,18 +34,100 @@ window.onload = function() {
     sheY = parseInt(document.getElementById("yShear").value);
     sheZ = parseInt(document.getElementById("zShear").value);
     
+    oneP = parseInt(document.getElementById("1Point").value);
+    twoP = parseInt(document.getElementById("2Point").value);
+    threeP = parseInt(document.getElementById("3Point").value);
     
-
+    
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera( 75, 800/800, 0.1, 1000 );
+    var camera1 = new THREE.PerspectiveCamera( 75, 800/800, 0.1, 1000 );
+    
+    // ***
+    var cameraOFront = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraOFront.position.set(0, 0 , 100);
+    cameraOFront.lookAt(scene.position);
+    
+    var cameraOSide = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraOSide.position.set(100, 0 , 0);
+    cameraOSide.lookAt(scene.position);
+    
+    var cameraOTop = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraOTop.position.set(0, 100 , 0);
+    cameraOTop.lookAt(scene.position);
+
+    var cameraODiaXY = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraODiaXY.position.set(100, 100 , 0);
+    cameraODiaXY.lookAt(scene.position);
+    
+    var cameraODiaXZ = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraODiaXZ.position.set(100, 0 , 100);
+    cameraODiaXZ.lookAt(scene.position);
+    
+    var cameraODiaYZ = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraODiaYZ.position.set(0, 100 , 100);
+    cameraODiaYZ.lookAt(scene.position);
+    
+    var cameraOIso = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
+                                                    (frustumSize * aspect) / 2,
+                                                    frustumSize / 2,
+                                                    -(frustumSize / 2));
+    
+    cameraOIso.position.set(100, 100 , 100);
+    cameraOIso.lookAt(scene.position);
+    
+    var cameraPOne = new THREE.PerspectiveCamera(100, aspect, 1, 100);
+    cameraPOne.position.x = 100;
+    cameraPOne.position.y = 0;
+    cameraPOne.position.z = 0;
+    cameraPOne.lookAt(scene.position);
+    
+    var cameraPTwo = new THREE.PerspectiveCamera(100, aspect, 1, 100);
+    cameraPTwo.position.x = 30;
+    cameraPTwo.position.y = 50;
+    cameraPTwo.position.z = 0;
+    cameraPTwo.lookAt(scene.position);
+    
+    var cameraPThree = new THREE.PerspectiveCamera(100, aspect, 1, 100);
+    cameraPTwo.position.x = 30;
+    cameraPTwo.position.y = 50;
+    cameraPTwo.position.z = 40;
+    cameraPTwo.lookAt(scene.position);
 
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
-    var cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
+    //var cameraControls = new THREE.OrbitControls(camera2, renderer.domElement);
 
     var house = new THREE.Group();
+    
+    var woodTexture = loader.load("https://i.pinimg.com/736x/a4/e2/be/a4e2be1d2e4ce0d076cdfc757f18e6e8--wood-plank-texture-wood-planks.jpg");
+    
+    var woodMaterial = new THREE.MeshBasicMaterial({map: woodTexture});
 
     var wallMaterial = new THREE.MeshLambertMaterial( { color: 0x663300 } );
     var roofMaterial = new THREE.MeshLambertMaterial( { color: 0x996633 } );
@@ -62,7 +153,7 @@ window.onload = function() {
     house.add(backWall);
 
     var front = new THREE.BoxGeometry( 55, 50, 5);
-    var frontWall = new THREE.Mesh( front, wallMaterial );
+    var frontWall = new THREE.Mesh( front, wallMaterial);
     frontWall.translateZ(25);
 
     house.add(frontWall)
@@ -91,7 +182,7 @@ window.onload = function() {
 
     scene.add(house);
 
-    camera.position.z = 100;
+    camera1.position.z = 100;
 
     var light1 = new THREE.PointLight( 0xFFFF00 );
     light1.position.set( 50, 50, -55 );
@@ -129,11 +220,14 @@ window.onload = function() {
     var shearMatrix = new THREE.Matrix4();
     shearMatrix.makeShear(sheX, sheY, sheZ);
     
+    var perspectiveMatrix = new THREE.Matrix4().set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, oneP, twoP, threeP, 1);
+    
     translateMatrix.multiply(rotateXMatrix);
     translateMatrix.multiply(rotateYMatrix);
     translateMatrix.multiply(rotateZMatrix);
     translateMatrix.multiply(scaleMatrix);
     translateMatrix.multiply(shearMatrix);
+    //translateMatrix.multiply(perspectiveMatrix);
     
     scene.applyMatrix(translateMatrix);
     
@@ -151,6 +245,7 @@ window.onload = function() {
         rotateZMatrix.makeRotationZ(rotRZ);
         scaleMatrix.makeScale(scaRX, scaRY, scaRZ);
         shearMatrix.makeShear(sheRX, sheRY, sheRZ);
+        perspectiveMatrix.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, onePRX, twoPRX, threePRX, 1);
         
         /*
         removePrevious.multiply(translateMatrix);
@@ -166,6 +261,8 @@ window.onload = function() {
         scene.applyMatrix(rotateZMatrix);
         scene.applyMatrix(scaleMatrix);
         scene.applyMatrix(shearMatrix);
+        //scene.applyMatrix(perspectiveMatrix);
+        
         
         var copyOfOrigMatrix = origMatrix.clone();
         translateMatrix.makeTranslation(traX, traY, traZ);
@@ -174,6 +271,7 @@ window.onload = function() {
         rotateZMatrix.makeRotationZ(rotZ);
         scaleMatrix.makeScale(scaX, scaY, scaZ);
         shearMatrix.makeShear(sheX, sheY, sheZ);
+        perspectiveMatrix.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, oneP, twoP, threeP, 1);
         
         copyOfOrigMatrix.multiply(translateMatrix);
         copyOfOrigMatrix.multiply(rotateXMatrix);
@@ -181,13 +279,8 @@ window.onload = function() {
         copyOfOrigMatrix.multiply(rotateZMatrix);
         copyOfOrigMatrix.multiply(scaleMatrix);
         copyOfOrigMatrix.multiply(shearMatrix);
+        //copyOfOrigMatrix.multiply(perspectiveMatrix);
         
-        /*
-        var copyList = copyOfOrigMatrix.elements;
-        var negaList = negativeOrigMatrix.elements;
-        
-        var submission = new THREE.Matrix4().set(copyList[0] + negaList[0], copyList[4] + negaList[4], copyList[8] + negaList[8], copyList[12] + negaList[12], copyList[1] + negaList[1], copyList[5] + negaList[5], copyList[9] + negaList[9], copyList[13] + negaList[13], copyList[2] + negaList[2], copyList[6] + negaList[6], copyList[10] + negaList[10], copyList[14] + negaList[14], copyList[3] + negaList[3], copyList[7] + negaList[7], copyList[11] + negaList[11], copyList[15] + negaList[15]);
-        */
         scene.applyMatrix(copyOfOrigMatrix);
         
         scene.updateMatrix();
@@ -203,8 +296,10 @@ window.onload = function() {
         if(scaZ != 1){scaRZ = (1/scaZ);}else{scaRZ = 1} 
         if(sheX != 0){sheRX = (-sheX);}else{sheRX = 0} 
         if(sheY != 0){sheRY = (-sheY);}else{sheRY = 0} 
-        if(sheZ != 0){sheRZ = (-sheZ);}else{sheRZ = 0} 
-        //negativeOrigMatrix = copyOfOrigMatrix.multiplyScalar(-1);
+        if(sheZ != 0){sheRZ = (-sheZ);}else{sheRZ = 0}
+        if(oneP != 0){onePRX = (-oneP);}else{onePRZ = 0}
+        if(twoP != 0){twoPRX = (-twoP);}else{twoPRZ = 0}
+        if(threeP != 0){threePRX = (-threeP);}else{threePRZ = 0}
     }
     
     document.getElementById("xTranslate").addEventListener("change", function(evt) {
@@ -283,13 +378,29 @@ window.onload = function() {
         //sheRZ = -sheZ;
     });
     
+    document.getElementById("1Point").addEventListener("change", function(evt) {
+        oneP = parseInt(document.getElementById("1Point").value);
+        applyChanges();
+        render();
+    });
+    document.getElementById("2Point").addEventListener("change", function(evt) {
+        twoP = parseInt(document.getElementById("2Point").value);
+        applyChanges();
+        render();
+    });
+    document.getElementById("3Point").addEventListener("change", function(evt) {
+        threeP = parseInt(document.getElementById("3Point").value);
+        applyChanges();
+        render();
+    });
+    
     var render = function () {
-        cameraControls.update();
+        //cameraControls.update();
         requestAnimationFrame( render );
     
-        camera.updateProjectionMatrix();
+        //camera.updateProjectionMatrix();
 
-        renderer.render(scene, camera);
+        renderer.render(scene, cameraPOne);
     };
 
     render();
