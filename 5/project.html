@@ -2,77 +2,79 @@
 <html>
 	<head>
 		<title>B.Jacques Final Project</title>
-		<style>
-			body { margin: 0; }
-			canvas { width: 800px; height: 800px; }
-		</style>
 	</head>
 	<body>
+        <link rel="stylesheet" href="project.css" />
 		<script src="./three.js-master/build/three.min.js"></script>
-        <script src="./three.js-master/examples/js/controls/OrbitControls.js"></script>
 		<script src="project.js"></script>
-        <div id="translate">
-            <span>Translate: </span>
-            <span><input id="xTranslate" type="range" min="-10" max="10" value="0" /></span>
-            <span><input id="yTranslate" type="range" min="-10" max="10" value="0" /></span>
-            <span><input id="zTranslate" type="range" min="-10" max="10" value="0" /></span>
-        </div>
-        <div id="rotate">
-            <span>Rotate Object: </span>
-            <span><input id="xRotate" type="range" min="0" max="4" value="0" /></span>
-            <span><input id="yRotate" type="range" min="0" max="4" value="0" /></span>
-            <span><input id="zRotate" type="range" min="0" max="4" value="0" /></span>
-        </div>
-        <div id="scale">
-            <span>Scale Object: </span>
-            <span><input id="xScale" type="range" min="1" max="5" value="1" /></span>
-            <span><input id="yScale" type="range" min="1" max="5" value="1" /></span>
-            <span><input id="zScale" type="range" min="1" max="5" value="1" /></span>
-        </div>
-        <div id="shear">
-            <span>Shear Object: </span>
-            <span><input id="xShear" type="range" min="0" max="5" value="0" /></span>
-            <span><input id="yShear" type="range" min="0" max="5" value="0" /></span>
-            <span><input id="zShear" type="range" min="0" max="5" value="0" /></span>
-        </div>
-        <div id="lightSources">
-            <span>Light Source Control: </span>
-            <span><input id="xLight" type="range" min="0" max="5" value="0" /></span>
-            <span><input id="yLight" type="range" min="0" max="5" value="0" /></span>
-            <span><input id="zLight" type="range" min="0" max="5" value="0" /></span>
-        </div>
-        <p>Views:</p>
-        <div id="orthogonal">
-            <span>Perspective on Object: </span>
-            <span><input id="OFront" type="button" value="Orthogonal Front" /></span>
-            <span><input id="OSide" type="button"  value="Orthogonal Side" /></span>
-            <span><input id="OTop" type="button" value="Orthogonal Top" /></span>
-        </div>
-        <div id="AxonometricPerspective">
-            <span>Axonometric Perspective on Object: </span>
-            <span><input id="Trimetric" type="button" value="Trimetric View" /></span>
-            <span><input id="Dimetric" type="button" value="Dimetric View" /></span>
-            <span><input id="Isometric" type="button" value="Isometric View" /></span>
-        </div>
-        <span>
-            <input id="EnableParallel" type="button" value="Enable Parallel View" />
-            <input id="DisableParallel" type="button" value="Disable Parallel View" />
-        </span>
-        <span>
-            <input id="EnableDimetric" type="button" value="Enable Dimetric View" />
-            <input id="DisableDimetric" type="button" value="Disable Dimetric View" />
-        </span>
-        <div id="ParallelPerspective">
-            <span>Parallel Perspective on Object: </span>
-            <span><input id="1Point" type="range" min="0" max="500" value="0" /></span>
-            <span><input id="2Point" type="range" min="0" max="500" value="0" /></span>
-            <span><input id="3Point" type="range" min="0" max="500" value="0" /></span>
-        </div>
-        <div id="ObliquePerspective">
-            <span>Oblique Perspective on Object: </span>
-            <span><input id="obliqueX" type="range" min="0" max="100" value="0" /></span>
-            <span><input id="obliqueY" type="range" min="0" max="100" value="0" /></span>
-            <span><input id="obliqueZ" type="range" min="0" max="100" value="0" /></span>
+        <div id="controls">
+            <div id="translate">
+                <span>Translate: </span>
+                <span><input id="xTranslate" type="range" min="-50" max="50" value="0" /></span>
+                <span><input id="yTranslate" type="range" min="-50" max="50" value="0" /></span>
+                <span><input id="zTranslate" type="range" min="-50" max="50" value="0" /></span>
+            </div>
+            <div id="rotate">
+                <span>Rotate Object: </span>
+                <span><input id="xRotate" type="range" min="0" max="4" value="0" /></span>
+                <span><input id="yRotate" type="range" min="0" max="4" value="0" /></span>
+                <span><input id="zRotate" type="range" min="0" max="4" value="0" /></span>
+            </div>
+            <div id="scale">
+                <span>Scale Object: </span>
+                <span><input id="xScale" type="range" min="1" max="5" value="1" /></span>
+                <span><input id="yScale" type="range" min="1" max="5" value="1" /></span>
+                <span><input id="zScale" type="range" min="1" max="5" value="1" /></span>
+            </div>
+            <div id="shear">
+                <span>Shear Object: </span>
+                <span><input id="xShear" type="range" min="0" max="5" value="0" /></span>
+                <span><input id="yShear" type="range" min="0" max="5" value="0" /></span>
+                <span><input id="zShear" type="range" min="0" max="5" value="0" /></span>
+            </div>
+            <div id="lightSources">
+                <span>Light Source Control: </span>
+                <span><input id="xLight" type="range" min="0" max="5" value="0" /></span>
+                <span><input id="yLight" type="range" min="0" max="5" value="0" /></span>
+                <span><input id="zLight" type="range" min="0" max="5" value="0" /></span>
+            </div>
+            <p>Views:</p>
+            <span><input id="PDefault" type="button" value="Default View" /></span>
+            <div id="orthogonal">
+                <span>Perspective on Object: </span>
+                <span><input id="OFront" type="button" value="Orthogonal Front" /></span>
+                <span><input id="OSide" type="button"  value="Orthogonal Side" /></span>
+                <span><input id="OTop" type="button" value="Orthogonal Top" /></span>
+            </div>
+            <div id="AxonometricPerspective">
+                <span>Axonometric Perspective on Object: </span>
+                <span><input id="Trimetric" type="button" value="Trimetric View" /></span>
+                <span><input id="Isometric" type="button" value="Isometric View" /></span>
+            </div>
+            <div id="DimetricPerspectives">
+                <span>Dimetric Perspectives on Object: </span>
+                <span><input id="DimetricXY" type="button" value="Dimetric View XY" /></span>
+                <span><input id="DimetricXZ" type="button" value="Dimetric View XZ" /></span>
+                <span><input id="DimetricYZ" type="button" value="Dimetric View YZ" /></span>
+            </div>
+            <span>
+                <input id="EnableParallel" type="button" value="Parallel View" />
+            </span>
+            <span>
+                <input id="EnableOblique" type="button" value="Enable Oblique View" />
+            </span>
+            <div id="ParallelPerspective" class="enable">
+                <span>Parallel Perspective on Object: </span>
+                <span><input id="ParallelX" type="range" min="0" max="100" value="0" /></span>
+                <span><input id="ParallelY" type="range" min="0" max="100" value="0" /></span>
+                <span><input id="ParallelZ" type="range" min="0" max="150" value="0" /></span>
+            </div>
+            <div id="ObliquePerspective" class="enable">
+                <span>Oblique Perspective on Object: </span>
+                <span><input id="ObliqueX" type="range" min="0" max="100" value="0" /></span>
+                <span><input id="ObliqueY" type="range" min="0" max="100" value="0" /></span>
+                <span><input id="ObliqueZ" type="range" min="0" max="100" value="0" /></span>
+            </div>
         </div>
 	</body>
 </html>

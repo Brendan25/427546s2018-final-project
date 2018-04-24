@@ -1,6 +1,27 @@
-canvas.generic{
+body {
+    width: 1600px;
+}
+
+canvas{
     border: 2px solid black;
     display: inline-block;
+    width: 800px;
+    height: 800px;
+}
+
+#disableParallel {
+    display: "none";
+}
+
+#disableOblique {
+    display: "none";
+}
+
+#controls {
+    display: inline-block;
+    width: 600px;
+    position: relative;
+    bottom: 500px;
 }
 
 input.loc {
@@ -58,4 +79,8 @@ span.canvas_menu {
     display: block;
     width: 150px;
     height: 50px
+}
+
+div.enable {
+    display: none;
 }
