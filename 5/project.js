@@ -1,9 +1,14 @@
+//Implement perspective camera by setting up a function that moves the camera backward whilst altering the field of view.
+
 window.onload = function() {
+    THREE.ImageUtils.crossOrigin = "use-credentials";
     var traX, traY, traZ; //Used for translations.
     var rotX, rotY, rotZ; //Used for rotations.
     var scaX, scaY, scaZ; //Used for scaling.
     var sheX, sheY, sheZ; //Used for shearing.
     var oneP, twoP, threeP; //Used for perspective projection.
+    var lX1, lY1, lZ1;
+    var lX2, lY2, lZ2;
     
     var traRX = 0, traRY = 0, traRZ = 0; //Used for reverse translations.
     var rotRX = 0, rotRY = 0, rotRZ = 0; //Used for reverse rotations.
@@ -15,17 +20,14 @@ window.onload = function() {
     var aspect = window.innerWidth / window.innerHeight;
     
     var windowSelector = 0;
-
-    var loader = new THREE.TextureLoader();
-    loader.setCrossOrigin("");
     
     traX = parseInt(document.getElementById("xTranslate").value);
     traY = parseInt(document.getElementById("yTranslate").value);
     traZ = parseInt(document.getElementById("zTranslate").value);
     
-    rotX = parseInt(document.getElementById("xRotate").value);
-    rotY = parseInt(document.getElementById("yRotate").value);
-    rotZ = parseInt(document.getElementById("zRotate").value);
+    rotX = (parseInt(document.getElementById("xRotate").value));
+    rotY = (parseInt(document.getElementById("yRotate").value));
+    rotZ = (parseInt(document.getElementById("zRotate").value));
     
     scaX = parseInt(document.getElementById("xScale").value);
     scaY = parseInt(document.getElementById("yScale").value);
@@ -35,17 +37,38 @@ window.onload = function() {
     sheY = parseInt(document.getElementById("yShear").value);
     sheZ = parseInt(document.getElementById("zShear").value);
     
+    lX1 = parseInt(document.getElementById("xLight1").value);
+    lY1 = parseInt(document.getElementById("yLight1").value);
+    lZ1 = parseInt(document.getElementById("zLight1").value);
+    
+    lX2 = parseInt(document.getElementById("xLight2").value);
+    lY2 = parseInt(document.getElementById("yLight2").value);
+    lZ2 = parseInt(document.getElementById("zLight2").value);
+    
     var scene = new THREE.Scene();
     
-    var woodMaterial = new THREE.MeshBasicMaterial({map: woodTexture});
-
-    var lineMaterial = new THREE.MeshLambertMaterial( { color: 0xff0000 } );
-    var wallMaterial = new THREE.MeshLambertMaterial( { color: 0x663300 } );
-    var roofMaterial = new THREE.MeshLambertMaterial( { color: 0x996633 } );
-    var testMaterial = new THREE.MeshLambertMaterial( { color: 0xff0000 } );
-    var blackMaterial = new THREE.MeshLambertMaterial( { color: 0x000000 } );
+    var wall = new THREE.TextureLoader().load("wood-wall.jpg");
+    var woodMaterial = new THREE.MeshPhongMaterial({
+        bumpMap: wall,
+        color: 0x663300
+    });
     
-    var camera1 = new THREE.PerspectiveCamera( 75, 800/800, 1, 100 );
+    /*
+    var wall = new THREE.TextureLoader();
+    wall.crossOrigin = "use-credentials";
+    wall.load("wood-wall.jpg");
+    var wallMaterial = new THREE.MeshStandardMaterial({
+        map:wall,
+    });
+    */
+
+    var lineMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+    var wallMaterial = new THREE.MeshPhongMaterial( { color: 0x663300 } );
+    var roofMaterial = new THREE.MeshPhongMaterial( { color: 0x996633 } );
+    var testMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+    var blackMaterial = new THREE.MeshPhongMaterial( { color: 0x000000 } );
+    
+    var camera1 = new THREE.PerspectiveCamera( 75, 800/800, 1, 300 );
     camera1.position.z = 100;
     camera1.position.y = 20;
     
@@ -160,10 +183,12 @@ window.onload = function() {
     cameraOblique.position.z = document.getElementById("ObliqueZ").value;
     cameraOblique.lookAt(scene.position);
     
-    scene.background = new THREE.Color(0xf0f0f0);
+    scene.background = new THREE.Color(0x808080);
 
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize( 800, 800 );
+    renderer.canvas = document.getElementById("home");
+    renderer.shadowMap.enabled = true;
+    renderer.setSize( 700, 700 );
     document.body.appendChild( renderer.domElement );
 
     //var cameraControls = new THREE.OrbitControls(camera2, renderer.domElement);
@@ -181,12 +206,10 @@ window.onload = function() {
     */
 
     var house = new THREE.Group();
-    
-    var woodTexture = loader.load("https://i.pinimg.com/736x/a4/e2/be/a4e2be1d2e4ce0d076cdfc757f18e6e8--wood-plank-texture-wood-planks.jpg");
 
 
     var right = new THREE.BoxGeometry( 5, 50, 50);
-    var rightWall = new THREE.Mesh( right, wallMaterial );
+    var rightWall = new THREE.Mesh( right, woodMaterial );
     rightWall.translateX(25);
     rightWall.translateY(25);
 
@@ -245,13 +268,13 @@ window.onload = function() {
     scene.add(house);
 
     var light1 = new THREE.PointLight( 0xFFFF00 );
-    light1.position.set( 50, 50, -55 );
+    light1.position.set( lX1, lY1, lZ1 );
     scene.add( light1 );
-
+    
     var light2 = new THREE.PointLight( 0xFFFF00 );
-    light2.position.set( -50, 50, -55 );
+    light2.position.set( lX2, lY2, lZ2 );
     scene.add( light2 );
-
+/*
     var light3 = new THREE.PointLight( 0xFFFF00 );
     light3.position.set( 50, 50, 55 );
     scene.add( light3 );
@@ -259,7 +282,7 @@ window.onload = function() {
     var light4 = new THREE.PointLight( 0xFFFF00 );
     light4.position.set( -50, 50, 55 );
     scene.add( light4 );
-    
+*/
     var origMatrix = scene.matrix;
     
     var translateMatrix = new THREE.Matrix4();
@@ -343,6 +366,10 @@ window.onload = function() {
         
         scene.applyMatrix(copyOfOrigMatrix);
         
+        scene.rotation.x = rotX;
+        scene.rotation.y = rotY;
+        scene.rotation.z = rotZ;
+        
         scene.updateMatrix();
         
         if(traX != 0){traRX = -traX;}else{traRX = 0}
@@ -382,19 +409,19 @@ window.onload = function() {
     });
 
     document.getElementById("xRotate").addEventListener("input", function(evt) {
-        rotX = (parseInt(document.getElementById("xRotate").value) * Math.PI) / 2;
+        rotX = parseInt(document.getElementById("xRotate").value) * (Math.PI / 8);
         applyChanges();
         render();
         //rotRX = -rotX;
     });
     document.getElementById("yRotate").addEventListener("input", function(evt) {
-        rotY = (parseInt(document.getElementById("yRotate").value) * Math.PI) / 2;
+        rotY = parseInt(document.getElementById("yRotate").value) * (Math.PI / 8);
         applyChanges();
         render();
         //rotRY = -rotY;
     });
     document.getElementById("zRotate").addEventListener("input", function(evt) {
-        rotZ = (parseInt(document.getElementById("zRotate").value) * Math.PI) / 2;
+        rotZ = parseInt(document.getElementById("zRotate").value) * (Math.PI / 8);
         applyChanges();
         render();
         //rotRZ = -rotZ;
@@ -478,7 +505,6 @@ window.onload = function() {
     
     document.getElementById("EnableParallel").addEventListener("click", function(evt) {
         document.getElementById("ParallelPerspective").style.display = "block";
-        document.getElementById("EnableParallel").style.display = "none";
         
         document.getElementById("ObliqueX").value = 0;
         document.getElementById("ObliqueY").value = 0;
@@ -489,21 +515,21 @@ window.onload = function() {
         
         windowSelector = 9;
     });
-    document.getElementById("ParallelX").addEventListener("change", function(evt) {
+    document.getElementById("ParallelX").addEventListener("input", function(evt) {
         cameraParallel.position.x = document.getElementById("ParallelX").value;
         cameraParallel.position.y = document.getElementById("ParallelY").value;
         cameraParallel.position.z = document.getElementById("ParallelZ").value;
         cameraParallel.lookAt(scene.position);
         render();
     });
-    document.getElementById("ParallelY").addEventListener("change", function(evt) {
+    document.getElementById("ParallelY").addEventListener("input", function(evt) {
         cameraParallel.position.x = document.getElementById("ParallelX").value;
         cameraParallel.position.y = document.getElementById("ParallelY").value;
         cameraParallel.position.z = document.getElementById("ParallelZ").value;
         cameraParallel.lookAt(scene.position);
         render();
     });
-    document.getElementById("ParallelZ").addEventListener("change", function(evt) {
+    document.getElementById("ParallelZ").addEventListener("input", function(evt) {
         cameraParallel.position.x = document.getElementById("ParallelX").value;
         cameraParallel.position.y = document.getElementById("ParallelY").value;
         cameraParallel.position.z = document.getElementById("ParallelZ").value;
@@ -513,9 +539,7 @@ window.onload = function() {
     
     document.getElementById("EnableOblique").addEventListener("click", function(evt) {
         document.getElementById("ObliquePerspective").style.display = "block";
-        
-        document.getElementById("EnableOblique").style.display = "none";
-        
+                
         document.getElementById("ObliqueX").value = 0;
         document.getElementById("ObliqueY").value = 0;
         document.getElementById("ObliqueZ").value = 0;
@@ -547,6 +571,37 @@ window.onload = function() {
         render();
     });
     
+    document.getElementById("xLight1").addEventListener("input", function(evt) {
+        lX1 = document.getElementById("xLight1").value;
+        light1.position.set( lX1, lY1, lZ1 );
+        render();
+    });
+    document.getElementById("yLight1").addEventListener("input", function(evt) {
+        lY1 = document.getElementById("yLight1").value;
+        light1.position.set( lX1, lY1, lZ1 );
+        render();
+    });
+    document.getElementById("zLight1").addEventListener("input", function(evt) {
+        lZ1 = document.getElementById("zLight1").value;
+        light1.position.set( lX1, lY1, lZ1 );
+        render();
+    });
+    
+    document.getElementById("xLight2").addEventListener("input", function(evt) {
+        lX2 = document.getElementById("xLight2").value;
+        light2.position.set( lX2, lY2, lZ2 );
+        render();
+    });
+    document.getElementById("yLight2").addEventListener("input", function(evt) {
+        lY2 = document.getElementById("yLight2").value;
+        light2.position.set( lX2, lY2, lZ2 );
+        render();
+    });
+    document.getElementById("zLight2").addEventListener("input", function(evt) {
+        lZ2 = document.getElementById("zLight2").value;
+        light2.position.set( lX2, lY2, lZ2 );
+        render();
+    });
     
     var render = function () {
         //cameraControls.update();

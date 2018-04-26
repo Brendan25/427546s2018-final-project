@@ -1,6 +1,7 @@
 1) Create buttons that allow the object to be viewed from multiple pre-set views.
 
 2) Scaling Sliders for translation, rotation, scale, and shear
+    - done
 
 3) Scaling Sliders for Light Source Positions.
 

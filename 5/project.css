@@ -5,8 +5,15 @@ body {
 canvas{
     border: 2px solid black;
     display: inline-block;
-    width: 800px;
-    height: 800px;
+    width: 700px;
+    height: 700px;
+    position: relative;
+    bottom: 250px;
+    right: 100px;
+}
+
+input.slider {
+    width: 125px;
 }
 
 #disableParallel {
@@ -21,7 +28,6 @@ canvas{
     display: inline-block;
     width: 600px;
     position: relative;
-    bottom: 500px;
 }
 
 input.loc {
@@ -41,6 +47,20 @@ select.submit, span.submit {
 
 input.submit2 {
     height: 30px;
+}
+
+div.section {
+    display: inline-block;
+    border: 2px solid black;
+    height: 235px;
+    width: 150px;
+    padding: 1px;
+}
+
+div.section2 {
+    display: inline-block;
+    padding: 1px;
+    margin-bottom: 5px;
 }
 
 div.choose {
@@ -67,6 +87,10 @@ div.sides {
     height: 650px;
     width: 800px;
     margin: 0;
+}
+
+div.group {
+    display: block;
 }
 
 span.menu {
