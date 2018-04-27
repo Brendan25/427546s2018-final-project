@@ -1,0 +1,108 @@
+body {
+    width: 1600px;
+}
+
+canvas{
+    border: 2px solid black;
+    display: inline-block;
+    position: relative;
+}
+
+input.slider {
+    width: 125px;
+    height: 10px;
+}
+
+#disableParallel {
+    display: "none";
+}
+
+#disableOblique {
+    display: "none";
+}
+
+#controls {
+    display: inline-block;
+    width: 650px;
+    position: relative;
+}
+
+input.loc {
+    width: 200px;
+    font-size: 20px;
+}
+
+input.submit {
+    height: 50px;
+    width: 100%;
+}
+
+select.submit, span.submit {
+    height: 25px;
+    width: 100%;
+}
+
+input.submit2 {
+    height: 30px;
+}
+
+div.section {
+    display: inline-block;
+    float: left;
+    border: 2px solid black;
+    height: 235px;
+    width: 150px;
+    padding: 4px;
+}
+
+div.section2 {
+    display: inline-block;
+    padding: 1px;
+    margin-bottom: 5px;
+}
+
+div.choose {
+    display: table;
+    width: 100%;
+    border-spacing: 5px;
+}
+
+div.canvas_choose {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    margin-top: -605px;
+    margin-left: 605px;
+}
+
+div.fractal-choose {
+    display: inline-block;
+    width: 100%;
+}
+
+div.sides {
+    display: block;
+    height: 650px;
+    width: 800px;
+    margin: 0;
+}
+
+div.group {
+    display: block;
+}
+
+span.menu {
+    display: table-cell;
+    width: 100px;
+    height: 60px;
+}
+
+span.canvas_menu {
+    display: block;
+    width: 150px;
+    height: 50px
+}
+
+div.enable {
+    display: none;
+}

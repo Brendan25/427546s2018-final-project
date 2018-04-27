@@ -1,0 +1,50 @@
+Name: Brendan Jacques
+
+Student ID: 01419198
+
+Computer Graphics: Progress Report 5
+
+Objective: To restart the Final Project from scratch, completing as many parts as possible using Three.Js as the programming language.
+
+Degree of Progress: 80%
+
+Work Description: 
+- Switched implementation languages to ThreeJs.
+- Created a simple 3D model of a house.
+- Created functioning controls for Translation, Rotation and Scaling of the house
+- Created controls for Shearing the model. Incomplete at the moment due to a current inability to reverse the shearing process on the house.
+- Created two light sources whose position in the space can be modified via slider controls.
+- Implemented a series of camera views that allow the object to be seen from the following projections:
+	1) Orthogonal (Front, Side and Top)
+	2) Trimetric
+	3) Isometric
+	4) Dimetric (in relation to the X and Y axes, the X and Z axes, and the Y and Z axes).
+	5) Parallel Perspective (work in progress)
+	6) Oblique Perspective (work in progress)
+- Experimented with applying textures to the walls of the house. Ran into issues involving
+  Google Chrome refusing to allow outside images to be loaded into the program without a local
+  web server being active, so as of now this feature doesn't work on Chrome. The walls affected
+  by this simply show up as normal walls.
+
+- By the submission date, I hope to complete work on the Parallel and Oblique Views,
+  create formal environmental maps for the walls of the house, and implement proper perspective
+  vanishing points.
+
+How to Run:
+Project is web-browser based, so opening the html in the project file should be sufficient.
+
+Link to WebLab Page: http://weblab.cs.uml.edu/~bjacques/427546s2018/final-project/5/project.html
+
+Note: Code from the incorrect version of the project has been saved in the old_code folder for posterity.
+
+Sources:
+
+1)  https://threejs.org/
+The documentation for the ThreeJs programming language. No specific tutorial code was taken
+for the assignment, only used as reference for proper implementation.
+
+2)  https://codepen.io/rachsmith/post/beginning-with-3d-webgl-pt-1-the-scene
+The original framework in which I built the project in came from this website. This consists of
+the render loop and the initial creation of the scene.
+
+Outside of the two above sources, all of the code in this assignment is my own.

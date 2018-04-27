@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>B.Jacques Final Project</title>
+	</head>
+	<body>
+        <link rel="stylesheet" href="project.css" />
+		<script src="./three.min.js"></script>
+		<script src="project.js"></script>
+        <div id="controls">
+            <div class="group">
+                <div id="translate" class="section">
+                    <div>Translate:</div>
+                    <div>X-Axis: <input id="xTranslate" class="slider" type="range" min="-50" max="50" value="0" /></div>
+                    <div>Y-Axis: <input id="yTranslate" class="slider" type="range" min="-50" max="50" value="0" /></div>
+                    <div>Z-Axis: <input id="zTranslate" class="slider" type="range" min="-50" max="50" value="0" /></div>
+                </div>
+                <div id="rotate" class="section">
+                    <div>Rotate Object: </div>
+                    <div>X-Axis: <input id="xRotate" class="slider" type="range" min="0" max="360" value="0" /></div>
+                    <div>Y-Axis: <input id="yRotate" class="slider" type="range" min="0" max="360" value="0" /></div>
+                    <div>Z-Axis: <input id="zRotate" class="slider" type="range" min="0" max="360" value="0" /></div>
+                </div>
+                <div id="scale" class="section">
+                    <div>Scale Object: </div>
+                    <div>X-Axis: <input id="xScale" class="slider" type="range" min="1" max="5" value="1" /></div>
+                    <div>Y-Axis: <input id="yScale" class="slider" type="range" min="1" max="5" value="1" /></div>
+                    <div>Z-Axis: <input id="zScale" class="slider" type="range" min="1" max="5" value="1" /></div>
+                </div>
+                <div id="shear" class="section">
+                    <div>Shear Object: </div>
+                    <div>X-Axis: <input id="xShear" class="slider" type="range" min="0" max="5" value="0" /></div>
+                    <div>Y-Axis: <input id="yShear" class="slider" type="range" min="0" max="5" value="0" /></div>
+                    <div>Z-Axis: <input id="zShear" class="slider" type="range" min="0" max="5" value="0" /></div>
+                </div>
+            </div>
+            <div class="group">
+                <div id="lightSources" class="section">
+                    <div>Light Source 1: </div>
+                    <div>X-Axis: <input id="xLight1" class="slider" type="range" min="-100" max="100" value="100" /></div>
+                    <div>Y-Axis: <input id="yLight1" class="slider" type="range" min="-100" max="100" value="100" /></div>
+                    <div>Z-Axis: <input id="zLight1" class="slider" type="range" min="-100" max="100" value="100" /></div>
+                </div>
+                <div id="lightSources" class="section">
+                    <div>Light Source 2: </div>
+                    <div>X-Axis: <input id="xLight2" class="slider" type="range" min="-100" max="100" value="-100" /></div>
+                    <div>Y-Axis: <input id="yLight2" class="slider" type="range" min="-100" max="100" value="-100" /></div>
+                    <div>Z-Axis: <input id="zLight2" class="slider" type="range" min="-100" max="100" value="-100" /></div>
+                </div>
+                <div id="orthogonal" class="section">
+                    <div>Orthogonal Projection on Object: </div>
+                    <div><input id="OFront" type="button" value="Orthogonal Front" /></div>
+                    <div><input id="OSide" type="button"  value="Orthogonal Side" /></div>
+                    <div><input id="OTop" type="button" value="Orthogonal Top" /></div>
+                </div>
+                <div id="ParallelPerspectives" class="section">
+                    <div>Parallel Perspectives on Object: </div>
+                    <div><input id="Trimetric" type="button" value="Trimetric View" /></div>
+                    <div><input id="DimetricXY" type="button" value="Dimetric View XY" /></div>
+                    <div><input id="DimetricXZ" type="button" value="Dimetric View XZ" /></div>
+                    <div><input id="DimetricYZ" type="button" value="Dimetric View YZ" /></div>
+                    <div><input id="Isometric" type="button" value="Isometric View" /></div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="section">
+                    <div>View Selector: </div>
+                    <div><input id="PDefault" type="button" value="Enable Default View" /></div>
+                </div>
+                <div id="PerspectiveProjection" class="section">
+                    <div>Parallel Perspective on Object: </div>
+                    <div><input id="EnableParallel" type="button" value="Enable Parallel View" /></div>
+                    <div>X-Axis: <input id="ParallelX" class="slider" type="range" min="-100" max="100" value="0" /></div>
+                    <div>Y-Axis: <input id="ParallelY" class="slider" type="range" min="-100" max="100" value="0" /></div>
+                    <div>Z-Axis: <input id="ParallelZ" class="slider" type="range" min="-150" max="150" value="50" /></div>
+                    <div>FOV: <input id="FOV" class="slider" type="range" min="0" max="150" value="0" /></div>
+                </div>
+                <div id="ObliqueProjection" class="section">
+                    <div>Oblique Perspective on Object: </div>
+                    <div><input id="EnableOblique" type="button" value="Enable Oblique View" /></div>
+                    <div>Szx: <input id="ObliqueZX" class="slider" type="range" min="-5" max="5" value="0" step="1" /></div>
+                    <div>Szy: <input id="ObliqueZY" class="slider" type="range" min="-5" max="5" value="0" step="1" /></div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

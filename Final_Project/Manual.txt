@@ -1,0 +1,17 @@
+This project runs entirely in WebGL. All that's needed to start the project up is to open the html file
+in a web browser that supports WebGL.
+
+How to Use:
+- Use the sliders provided to modify certain aspects of the model along the X, Y, and Z axes:
+1) Its position within the frame.
+2) Its angle of rotation.
+	Note: Overuse of these controls currently leads to a glitch where the 3D model begins to shrink
+	exponentially. Refresh the page if this happens.
+3) Its overall scale.
+4) The amount of shearing
+	Note: The shearing controls are currently glitchy and cause the 3D model to exponentially grow
+	out of view. Refresh the page if this happens.
+5) The positions in the frame of two different light sources.
+
+- Use the buttons to swap between different camera angles of the model. The above controls work
+regardless of the camera being used.
