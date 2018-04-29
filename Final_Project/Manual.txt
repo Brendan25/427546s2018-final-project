@@ -5,13 +5,15 @@ How to Use:
 - Use the sliders provided to modify certain aspects of the model along the X, Y, and Z axes:
 1) Its position within the frame.
 2) Its angle of rotation.
-	Note: Overuse of these controls currently leads to a glitch where the 3D model begins to shrink
-	exponentially. Refresh the page if this happens.
 3) Its overall scale.
 4) The amount of shearing
-	Note: The shearing controls are currently glitchy and cause the 3D model to exponentially grow
-	out of view. Refresh the page if this happens.
+
 5) The positions in the frame of two different light sources.
 
 - Use the buttons to swap between different camera angles of the model. The above controls work
 regardless of the camera being used.
+- Press "Enable Parallel View" to swap to the Parallel Projection view. Use the controls below to modify the x, y and z axis vanishing
+points. Press "Enable Parallel View" again to reset the camera.
+- Press "Enable Oblique View" to swap to the Oblique Projection view. Use the controls below the button to modify the object's shearing
+to simulate different oblique views. Note that normal shearing controls are disabled when in Oblique View. Swap to a different view to
+re-enable normal shearing controls.
