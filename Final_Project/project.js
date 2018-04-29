@@ -17,7 +17,7 @@ window.onload = function() {
     var sheRX = 0, sheRY = 0, sheRZ = 0; //Used for reverse shearing.
     var onePRX = 0, twoPRX = 0, threePRX = 0;
     
-    var frustumSize = 200;
+    var frustumSize = 150;
     var aspect = window.innerWidth / window.innerHeight;
     
     var windowSelector = 0;
@@ -51,7 +51,9 @@ window.onload = function() {
     
     var scene = new THREE.Scene();
     
-    var wall = new THREE.TextureLoader().load("wood-wall.jpg");
+    var testEnv = new THREE.Scene();
+    
+    var wall = new THREE.TextureLoader().load("./Images/wood-wall.jpg");
     var woodMaterial = new THREE.MeshPhongMaterial({
         bumpMap: wall,
         color: 0x663300
@@ -72,12 +74,71 @@ window.onload = function() {
     var testMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
     var blackMaterial = new THREE.MeshPhongMaterial( { color: 0x000000 } );
     
-    var background = new THREE.TextureLoader().load("./Images/Hubble_Extreme_Deep_Field.png");
-    var backgroundMesh = new THREE.Mesh(new THREE.BoxBufferGeometry(200, 200, 200), background);
+    //Skybox
+    var urls = [
+              './Images/space-posx.jpg',
+              './Images/space-negx.jpg',
+              './Images/space-posy.jpg',
+              './Images/space-negy.jpg',
+              './Images/space-posz.jpg',
+              './Images/space-negz.jpg'
+            ];
+    
+    var materialArray = [];
+    for (var i = 0; i < 6; i++) {
+      materialArray.push( new THREE.MeshBasicMaterial({
+       map: new THREE.TextureLoader().load( urls[i] ),
+       side: THREE.BackSide
+      }));
+    }
+    
+    var skyGeometry = new THREE.CubeGeometry( 600, 600, 600 );
+    var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+    skyBox.rotation.x += Math.PI / 2;
+    scene.add( skyBox );
+   /* 
+    var textures = new THREE.CubeTextureLoader().load(urls);
+    
+    textures.format = THREE.RGBFormat;
+
+    // following code from https://github.com/mrdoob/three.js/blob/master/examples/webgl_materials_cubemap.html
+    var shader = THREE.ShaderLib[ "cube" ];
+    shader.uniforms[ "tCube" ].texture = textures;
+
+    var material = new THREE.ShaderMaterial( {
+
+      fragmentShader: shader.fragmentShader,
+      vertexShader: shader.vertexShader,
+      uniforms: shader.uniforms,
+      depthWrite: false
+
+    });
+
+    var skybox = new THREE.Mesh( new THREE.CubeGeometry( 175, 175, 175 ), material );
+    skybox.flipSided = true;
+    
+    scene.add(skybox);
+   */ 
+    /*
+    background.format = THREE.RGBFormat;
+    background.mapping = THREE.CubeReflectionMapping;
+    
+    var cubeShader = THREE.ShaderLib[ "cube" ];
+    var cubeMaterial = new THREE.ShaderMaterial( {
+        fragmentShader: cubeShader.fragmentShader,
+        vertexShader: cubeShader.vertexShader,
+        uniforms: cubeShader.uniforms,
+        depthWrite: false,
+        side: THREE.BackSide
+    } );
+    cubeMaterial.uniforms[ "tCube" ].value = background;
+    
+    var backgroundMesh = new THREE.Mesh(new THREE.BoxBufferGeometry(100, 100, 100), cubeMaterial);
     
     scene.add(backgroundMesh);
-    
-    var camera1 = new THREE.PerspectiveCamera( 75, 800/800, 1, 200 );
+    */
+    var camera1 = new THREE.PerspectiveCamera( 75, 800/800, 1, 600 );
     camera1.position.z = 100;
     camera1.position.y = 20;
     
@@ -87,7 +148,7 @@ window.onload = function() {
                                                     frustumSize / 2,
                                                     -(frustumSize / 2));
     
-    cameraOFront.position.set(0, 0 , 100);
+    cameraOFront.position.set(0, 50 , 100);
     //cameraOFront.lookAt(scene.position);
     
     var cameraOSide = new THREE.OrthographicCamera(-(frustumSize * aspect) / 2,
@@ -146,11 +207,13 @@ window.onload = function() {
     cameraOIso.position.set(100, 100 , 100);
     cameraOIso.lookAt(scene.position);
     
-    var cameraParallel = new THREE.PerspectiveCamera(100, aspect, 1, 200);
-    cameraParallel.position.x = document.getElementById("ParallelX").value;
-    cameraParallel.position.y = document.getElementById("ParallelY").value;
-    cameraParallel.position.z = document.getElementById("ParallelZ").value;
+    var posZChanger = 150;
+    //var posYChanger = -50;
+    var cameraParallel = new THREE.PerspectiveCamera(50, aspect, 1, 600);
     cameraParallel.fov = document.getElementById("FOV").value;
+    cameraParallel.position.x = document.getElementById("ParallelX").value;
+    cameraParallel.position.y = 20 + document.getElementById("ParallelY").value;
+    cameraParallel.position.z = posZChanger - cameraParallel.fov;
     cameraParallel.lookAt(scene.position);
     
     var size = 100;
@@ -164,8 +227,8 @@ window.onload = function() {
                                                     frustumSize / 2,
                                                     -(frustumSize / 2));
     
-    cameraOblique.position.set(0, 0 , 100);
-    cameraOblique.lookAt(scene.position);
+    cameraOblique.position.set(0, 25 , 100);
+    //cameraOblique.lookAt(scene.position);
     //cameraOblique.position.z = 100;
     //cameraOblique.position.y = 20;
     //cameraOblique.lookAt(scene.position);
@@ -175,7 +238,7 @@ window.onload = function() {
     var renderer = new THREE.WebGLRenderer();
     renderer.canvas = document.getElementById("home");
     renderer.shadowMap.enabled = true;
-    renderer.setSize( 700, 700 );
+    renderer.setSize( 800, 800 );
     document.body.appendChild( renderer.domElement );
 
     var house = new THREE.Group();
@@ -441,26 +504,26 @@ window.onload = function() {
         document.getElementById("ObliqueZY").value = 0;
         document.getElementById("ParallelX").value = 0;
         document.getElementById("ParallelY").value = 0;
-        document.getElementById("ParallelZ").value = 0;
+        document.getElementById("FOV").value = 0;
+        
+        cameraParallel.position.y = 20;
+        cameraParallel.lookAt(scene.position);
         
         windowSelector = 9;
+        applyChanges();
+        render();
     });
     document.getElementById("ParallelX").addEventListener("input", function(evt) {
         cameraParallel.position.x = document.getElementById("ParallelX").value;
-        cameraParallel.position.y = document.getElementById("ParallelY").value;
-        cameraParallel.position.z = document.getElementById("ParallelZ").value;
-        cameraParallel.fov = document.getElementById("FOV").value;
-        cameraParallel.lookAt(scene.position);
+        cameraParallel.lookAt(-cameraParallel.position.x, -cameraParallel.position.y, scene.position.z);
         render();
     });
     document.getElementById("ParallelY").addEventListener("input", function(evt) {
-        cameraParallel.position.x = document.getElementById("ParallelX").value;
         cameraParallel.position.y = document.getElementById("ParallelY").value;
-        cameraParallel.position.z = document.getElementById("ParallelZ").value;
-        cameraParallel.fov = document.getElementById("FOV").value;
-        cameraParallel.lookAt(scene.position);
+        cameraParallel.lookAt(-cameraParallel.position.x, -cameraParallel.position.y, scene.position.z);
         render();
     });
+    /*
     document.getElementById("ParallelZ").addEventListener("input", function(evt) {
         cameraParallel.position.x = document.getElementById("ParallelX").value;
         cameraParallel.position.y = document.getElementById("ParallelY").value;
@@ -469,12 +532,11 @@ window.onload = function() {
         cameraParallel.fov = document.getElementById("FOV").value;
         render();
     });    
+    */
     document.getElementById("FOV").addEventListener("input", function(evt) {
-        cameraParallel.position.x = document.getElementById("ParallelX").value;
-        cameraParallel.position.y = document.getElementById("ParallelY").value;
-        cameraParallel.position.z = document.getElementById("ParallelZ").value;
-        cameraParallel.lookAt(scene.position);
         cameraParallel.fov = document.getElementById("FOV").value;
+        cameraParallel.position.z = posZChanger - cameraParallel.fov;
+        cameraParallel.lookAt(-cameraParallel.position.x, -cameraParallel.position.y, scene.position.z);
         render();
     });
     
@@ -483,9 +545,10 @@ window.onload = function() {
         document.getElementById("ObliqueZY").value = 0;
         document.getElementById("ParallelX").value = 0;
         document.getElementById("ParallelY").value = 0;
-        document.getElementById("ParallelZ").value = 0;
         
         windowSelector = 10;
+        applyChanges();
+        render();
     });
     document.getElementById("ObliqueZX").addEventListener("input", function(evt) {
         obliqueZX = parseInt(document.getElementById("ObliqueZX").value);

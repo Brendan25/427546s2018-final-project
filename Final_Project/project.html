@@ -23,15 +23,16 @@
                 </div>
                 <div id="scale" class="section">
                     <div>Scale Object: </div>
-                    <div>X-Axis: <input id="xScale" class="slider" type="range" min="1" max="5" value="1" /></div>
-                    <div>Y-Axis: <input id="yScale" class="slider" type="range" min="1" max="5" value="1" /></div>
-                    <div>Z-Axis: <input id="zScale" class="slider" type="range" min="1" max="5" value="1" /></div>
+                    <div>X-Axis: <input id="xScale" class="slider" type="range" min="1" max="5" value="0" step="1" /></div>
+                    <div>Y-Axis: <input id="yScale" class="slider" type="range" min="1" max="5" value="0" step="1" /></div>
+                    <div>Z-Axis: <input id="zScale" class="slider" type="range" min="1" max="5" value="0" step="1" /></div>
                 </div>
                 <div id="shear" class="section">
                     <div>Shear Object: </div>
-                    <div>X-Axis: <input id="xShear" class="slider" type="range" min="0" max="5" value="0" /></div>
-                    <div>Y-Axis: <input id="yShear" class="slider" type="range" min="0" max="5" value="0" /></div>
-                    <div>Z-Axis: <input id="zShear" class="slider" type="range" min="0" max="5" value="0" /></div>
+                    <div class="small">(Disabled If Oblique View On)</div>
+                    <div>X-Axis: <input id="xShear" class="slider" type="range" min="0" max="5" value="0" step="1" /></div>
+                    <div>Y-Axis: <input id="yShear" class="slider" type="range" min="0" max="5" value="0" step="1" /></div>
+                    <div>Z-Axis: <input id="zShear" class="slider" type="range" min="0" max="5" value="0" step="1" /></div>
                 </div>
             </div>
             <div class="group">
@@ -72,8 +73,7 @@
                     <div><input id="EnableParallel" type="button" value="Enable Parallel View" /></div>
                     <div>X-Axis: <input id="ParallelX" class="slider" type="range" min="-100" max="100" value="0" /></div>
                     <div>Y-Axis: <input id="ParallelY" class="slider" type="range" min="-100" max="100" value="0" /></div>
-                    <div>Z-Axis: <input id="ParallelZ" class="slider" type="range" min="-150" max="150" value="50" /></div>
-                    <div>FOV: <input id="FOV" class="slider" type="range" min="0" max="150" value="0" /></div>
+                    <div>FOV: <input id="FOV" class="slider" type="range" min="1" max="100" value="1" /></div>
                 </div>
                 <div id="ObliqueProjection" class="section">
                     <div>Oblique Perspective on Object: </div>
